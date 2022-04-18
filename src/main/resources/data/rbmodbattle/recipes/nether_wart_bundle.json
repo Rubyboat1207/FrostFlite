@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#L#",
+    "LAL",
+    " L "
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:string"
+    },
+    "L": {
+      "item": "minecraft:leather"
+    },
+    "A": {
+      "item": "minecraft:nether_wart"
+    }
+  },
+  "result": {
+    "item": "rbmodbattle:nether_wart_bundle",
+    "count": 1
+  }
+}

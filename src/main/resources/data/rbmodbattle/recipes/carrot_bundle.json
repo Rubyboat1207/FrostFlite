@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#L#",
+    "LAL",
+    " L "
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:string"
+    },
+    "L": {
+      "item": "minecraft:leather"
+    },
+    "A": {
+      "item": "minecraft:carrot"
+    }
+  },
+  "result": {
+    "item": "rbmodbattle:carrot_bundle",
+    "count": 1
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "parent": "rbmodbattle:item/potato_bundle",
+  "textures": {
+    "layer0": "rbmodbattle:item/potato_bundle_filled"
+  }
+}

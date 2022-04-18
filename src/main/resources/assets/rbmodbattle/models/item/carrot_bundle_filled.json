@@ -1,0 +1,6 @@
+{
+  "parent": "rbmodbattle:item/carrot_bundle",
+  "textures": {
+    "layer0": "rbmodbattle:item/carrot_bundle_filled"
+  }
+}

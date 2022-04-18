@@ -1,0 +1,6 @@
+{
+  "parent": "rbmodbattle:item/wheat_seeds_bundle",
+  "textures": {
+    "layer0": "rbmodbattle:item/wheat_seeds_bundle_filled"
+  }
+}

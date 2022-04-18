@@ -1,0 +1,6 @@
+{
+  "parent": "rbmodbattle:item/bamboo_bundle",
+  "textures": {
+    "layer0": "rbmodbattle:item/bamboo_bundle_filled"
+  }
+}

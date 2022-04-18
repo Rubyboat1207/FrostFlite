@@ -1,0 +1,6 @@
+{
+  "parent": "rbmodbattle:item/beetroot_bundle",
+  "textures": {
+    "layer0": "rbmodbattle:item/beetroot_bundle_filled"
+  }
+}

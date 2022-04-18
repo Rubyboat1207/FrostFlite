@@ -1,0 +1,6 @@
+{
+  "parent": "rbmodbattle:item/broccoli_bundle",
+  "textures": {
+    "layer0": "rbmodbattle:item/broccoli_bundle_filled"
+  }
+}

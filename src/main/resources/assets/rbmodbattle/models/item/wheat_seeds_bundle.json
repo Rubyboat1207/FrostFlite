@@ -1,0 +1,9 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "rbmodbattle:item/wheat_seeds_bundle"
+  },
+  "overrides": [
+    { "predicate": { "rbmodbattle:has_items": 1 }, "model": "rbmodbattle:item/wheat_seeds_bundle_filled" }
+  ]
+}

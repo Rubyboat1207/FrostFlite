@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#L#",
+    "LAL",
+    " L "
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:string"
+    },
+    "L": {
+      "item": "minecraft:leather"
+    },
+    "A": {
+      "item": "rbmodbattle:broccoli_seeds"
+    }
+  },
+  "result": {
+    "item": "rbmodbattle:broccoli_bundle",
+    "count": 1
+  }
+}

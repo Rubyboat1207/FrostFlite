@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "id": "modbattle",
+  "version": "${version}",
+  "name": "Modbattle",
+  "description": "",
+  "authors": [],
+  "contact": {},
+  "license": "MIT",
+  "icon": "assets/modbattle/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "client": [
+      "rubyboat.modbattle.client.ClientMain"
+    ],
+    "main": [
+      "rubyboat.modbattle.Main"
+    ]
+  },
+  "mixins": [
+    "modbattle.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.13.3",
+    "fabric": "*",
+    "minecraft": "1.18.2",
+    "totem_api": "*"
+  },
+  "accessWidener" : "rbmodbattle.accesswidener"
+}

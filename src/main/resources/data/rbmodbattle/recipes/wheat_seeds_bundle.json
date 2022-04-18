@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#L#",
+    "LAL",
+    " L "
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:string"
+    },
+    "L": {
+      "item": "minecraft:leather"
+    },
+    "A": {
+      "item": "minecraft:wheat_seeds"
+    }
+  },
+  "result": {
+    "item": "rbmodbattle:wheat_seeds_bundle",
+    "count": 1
+  }
+}
