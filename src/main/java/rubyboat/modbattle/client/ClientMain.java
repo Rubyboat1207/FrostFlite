@@ -12,5 +12,6 @@ public class ClientMain implements ClientModInitializer {
     @Override
     public void onInitializeClient() {
         BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getCutout(), Main.BROCCOLI_PLANT);
+        BlockRenderLayerMap.INSTANCE.putBlocks(RenderLayer.getTranslucent(), Main.GROWING_PLOT_BLOCK);
     }
 }

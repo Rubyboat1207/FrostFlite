@@ -1,0 +1,7 @@
+{
+  "parent": "rbmodbattle:block/growing_plot/template_hash",
+  "textures": {
+    "cross": "minecraft:block/wheat_stage_7",
+    "fertilizer": "minecraft:block/dirt"
+  }
+}

@@ -47,7 +47,7 @@ public class TallCropBlock extends TallPlantBlock implements Fertilizable {
         if(state.get(TallPlantBlock.HALF) == DoubleBlockHalf.UPPER) {
             world.setBlockState(pos, state.with(isGrown, true));
         }else {
-            world.setBlockState(new BlockPos(pos).add(0,1,0), state.with(isGrown, true));
+            world.setBlockState(new BlockPos(pos).add(0,1,0), world.getBlockState(pos.add(0,1,0)).with(isGrown, true));
         }
     }
     @Override

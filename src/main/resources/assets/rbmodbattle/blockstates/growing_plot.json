@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "fertilizer=none": {
+      "model": "rbmodbattle:block/growing_plot/gp_empty"
+    },
+    "fertilizer=dirt,crop=none": {
+      "model": "rbmodbattle:block/growing_plot/gp_dirt"
+    },
+    "fertilizer=dirt,crop=wheat": {
+      "model": "rbmodbattle:block/growing_plot/gp_dirt_wheat"
+    }
+  }
+}

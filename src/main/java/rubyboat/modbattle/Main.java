@@ -13,6 +13,7 @@ import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 import rubyboat.modbattle.customBlocks.BroccoliPlantBlock;
+import rubyboat.modbattle.customBlocks.GrowingPlotBlock;
 import rubyboat.modbattle.customBlocks.TallCropBlock;
 import rubyboat.modbattle.items.FarmingElytra;
 import rubyboat.modbattle.items.FarmingElytraEquipmentProvider;
@@ -39,13 +40,6 @@ public class Main implements ModInitializer {
 
     public static ItemGroup RB_MODBATTLE_GROUP = FabricItemGroupBuilder.build(new Identifier(MOD_ID, "rbmodbattle_group"), () -> new ItemStack(Items.WHEAT_SEEDS));
 
-    public static final SeedBundle POTATO_BUNDLE = new SeedBundle(new FabricItemSettings().group(Main.RB_MODBATTLE_GROUP).maxCount(1), (BlockItem) Items.POTATO);
-    public static final SeedBundle CARROT_BUNDLE = new SeedBundle(new FabricItemSettings().group(Main.RB_MODBATTLE_GROUP).maxCount(1), (BlockItem) Items.CARROT);
-    public static final SeedBundle WHEAT_SEEDS_BUNDLE = new SeedBundle(new FabricItemSettings().group(Main.RB_MODBATTLE_GROUP).maxCount(1), (BlockItem) Items.WHEAT_SEEDS);
-    public static final SeedBundle BEETROOT_BUNDLE = new SeedBundle(new FabricItemSettings().group(Main.RB_MODBATTLE_GROUP).maxCount(1), (BlockItem) Items.BEETROOT_SEEDS);
-    public static final SeedBundle BAMBOO_BUNDLE = new SeedBundle(new FabricItemSettings().group(Main.RB_MODBATTLE_GROUP).maxCount(1), (BlockItem) Items.BAMBOO);
-    public static final SeedBundle NETHER_WART_BUNDLE = new SeedBundle(new FabricItemSettings().group(Main.RB_MODBATTLE_GROUP).maxCount(1), (BlockItem) Items.NETHER_WART);
-    public static final SeedBundle BROCCOLI_BUNDLE = new SeedBundle(new FabricItemSettings().group(Main.RB_MODBATTLE_GROUP).maxCount(1), (BlockItem) Main.BROCCOLI_SEEDS);
 
     public static final FarmingElytra FARMING_ELYTRA = new FarmingElytra(new FabricItemSettings().group(Main.RB_MODBATTLE_GROUP).maxCount(1).equipmentSlot(FARMING_ELYTRA_EQUIPMENT_PROVIDER).maxDamage(400));
 
@@ -57,6 +51,16 @@ public class Main implements ModInitializer {
     public static final Block CORN_PLANT = new TallCropBlock(FabricBlockSettings.of(Material.PLANT).ticksRandomly().breakInstantly().sounds(BlockSoundGroup.CROP).nonOpaque().collidable(false));
     public static final Item CORN_SEEDS = new TallBlockItem(CORN_PLANT, new FabricItemSettings().group(Main.RB_MODBATTLE_GROUP).maxCount(64));
 
+    public static final SeedBundle POTATO_BUNDLE = new SeedBundle(new FabricItemSettings().group(Main.RB_MODBATTLE_GROUP).maxCount(1), (BlockItem) Items.POTATO);
+    public static final SeedBundle CARROT_BUNDLE = new SeedBundle(new FabricItemSettings().group(Main.RB_MODBATTLE_GROUP).maxCount(1), (BlockItem) Items.CARROT);
+    public static final SeedBundle WHEAT_SEEDS_BUNDLE = new SeedBundle(new FabricItemSettings().group(Main.RB_MODBATTLE_GROUP).maxCount(1), (BlockItem) Items.WHEAT_SEEDS);
+    public static final SeedBundle BEETROOT_BUNDLE = new SeedBundle(new FabricItemSettings().group(Main.RB_MODBATTLE_GROUP).maxCount(1), (BlockItem) Items.BEETROOT_SEEDS);
+    public static final SeedBundle BAMBOO_BUNDLE = new SeedBundle(new FabricItemSettings().group(Main.RB_MODBATTLE_GROUP).maxCount(1), (BlockItem) Items.BAMBOO);
+    public static final SeedBundle NETHER_WART_BUNDLE = new SeedBundle(new FabricItemSettings().group(Main.RB_MODBATTLE_GROUP).maxCount(1), (BlockItem) Items.NETHER_WART);
+    public static final SeedBundle BROCCOLI_BUNDLE = new SeedBundle(new FabricItemSettings().group(Main.RB_MODBATTLE_GROUP).maxCount(1), (BlockItem) Main.BROCCOLI_SEEDS);
+
+    public static final GrowingPlotBlock GROWING_PLOT_BLOCK = new GrowingPlotBlock(FabricBlockSettings.of(Material.WOOD).sounds(BlockSoundGroup.WOOD).nonOpaque());
+    public static final Item GROWING_PLOT_ITEM = new BlockItem(GROWING_PLOT_BLOCK, new FabricItemSettings().group(Main.RB_MODBATTLE_GROUP).maxCount(64));
     public static Item[] crops = new Item[] {
             Items.WHEAT_SEEDS, //done
             Items.BEETROOT_SEEDS, //done
@@ -81,6 +85,8 @@ public class Main implements ModInitializer {
         Registry.register(Registry.ITEM, new Identifier(MOD_ID, "corn_seeds"), CORN_SEEDS);
         Registry.register(Registry.BLOCK, new Identifier(MOD_ID, "broccoli"), BROCCOLI_PLANT);
         Registry.register(Registry.BLOCK, new Identifier(MOD_ID, "corn"), CORN_PLANT);
+        Registry.register(Registry.BLOCK, new Identifier(MOD_ID, "growing_plot"), GROWING_PLOT_BLOCK);
+        Registry.register(Registry.ITEM, new Identifier(MOD_ID, "growing_plot"), GROWING_PLOT_ITEM);
         ModelPredicateProviderRegistry.register(POTATO_BUNDLE, new Identifier(MOD_ID, "has_items"), (stack, world, entity, seed) -> stack.getOrCreateNbt().getInt(SeedBundle.KEY) > 0 ? 1 : 0);
         ModelPredicateProviderRegistry.register(CARROT_BUNDLE, new Identifier(MOD_ID, "has_items"), (stack, world, entity, seed) -> stack.getOrCreateNbt().getInt(SeedBundle.KEY) > 0 ? 1 : 0);
         ModelPredicateProviderRegistry.register(WHEAT_SEEDS_BUNDLE, new Identifier(MOD_ID, "has_items"), (stack, world, entity, seed) -> stack.getOrCreateNbt().getInt(SeedBundle.KEY) > 0 ? 1 : 0);
