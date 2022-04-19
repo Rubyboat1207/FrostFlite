@@ -1,7 +1,7 @@
 {
   "parent": "rbmodbattle:block/growing_plot/template_hash",
   "textures": {
-    "hash": "minecraft:block/wheat_stage_7",
+    "cross": "minecraft:block/potato_stage_7",
     "fertilizer": "minecraft:block/farmland_moist"
   }
 }

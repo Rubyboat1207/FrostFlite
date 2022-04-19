@@ -1,0 +1,7 @@
+{
+  "parent": "rbmodbattle:block/growing_plot/template_cross",
+  "textures": {
+    "cross": "rbmodbattle:block/broccoli_stage1",
+    "fertilizer": "minecraft:block/farmland_moist"
+  }
+}

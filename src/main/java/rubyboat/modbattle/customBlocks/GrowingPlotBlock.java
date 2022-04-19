@@ -5,6 +5,7 @@ import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.state.property.EnumProperty;
@@ -15,6 +16,9 @@ import net.minecraft.util.StringIdentifiable;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import rubyboat.modbattle.Main;
+
+import java.util.Random;
 
 public class GrowingPlotBlock extends Block {
     public static EnumProperty<FertilizerTypes> FERTILIZER = EnumProperty.of("fertilizer", FertilizerTypes.class);
@@ -43,26 +47,45 @@ public class GrowingPlotBlock extends Block {
                 return ActionResult.SUCCESS;
             }
         }
-        else if(player.getStackInHand(hand).isEmpty())
-        {
-            player.setStackInHand(hand, fertilizerToItemStack(state.get(FERTILIZER)));
-            world.setBlockState(pos, state.with(FERTILIZER, FertilizerTypes.NONE));
-            return ActionResult.SUCCESS;
-        }else if(plotCanAcceptSeeds(state))
+        else if(plotCanAcceptSeeds(state))
         {
             if(player.getStackInHand(hand).getItem() == Items.WHEAT_SEEDS) {
                 player.getStackInHand(hand).decrement(1);
                 world.setBlockState(pos, state.with(CROP, CropTypes.WHEAT_SEEDS));
+            }
+            if(player.getStackInHand(hand).getItem() == Main.BROCCOLI_SEEDS) {
+                player.getStackInHand(hand).decrement(1);
+                world.setBlockState(pos, state.with(CROP, CropTypes.BROCCOLI));
             }
         }
 
         return ActionResult.PASS;
     }
 
+    public int getCropEfficiency(BlockState state)
+    {
+        //get the crop type and the fertilizer type
+        CropTypes crop = state.get(CROP);
+        FertilizerTypes fertilizer = state.get(FERTILIZER);
+        //if the fertilizer matches the crop's best type then return 5 else return 1
+        return fertilizer == crop.bestType ? 5 : 2;
+    }
+
+    @Override
+    public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
+        if(random.nextInt(6) < getCropEfficiency(state))
+        {
+            //increment the age
+            world.setBlockState(pos, state.with(AGE, state.get(AGE) + 1));
+        }
+    }
+
+    //ENUMS
     public enum FertilizerTypes implements StringIdentifiable {
         NONE("none"),
         DIRT("dirt"),
-        COLD("cold");
+        COLD("cold"),
+        SOUL_SAND("soul_sand");
 
         private final String name;
 
@@ -79,18 +102,20 @@ public class GrowingPlotBlock extends Block {
         }
     }
     public enum CropTypes implements StringIdentifiable {
-        NONE("none"),
-        WHEAT_SEEDS("wheat"),
-        BEETROOT_SEEDS("beetroot"),
-        CARROT("carrot"),
-        POTATO("potato"),
-        NETHER_WART("nether_wart"),
-        BROCCOLI("broccoli");
+        NONE("none", null),
+        WHEAT_SEEDS("wheat", FertilizerTypes.DIRT),
+        BEETROOT_SEEDS("beetroot", FertilizerTypes.DIRT),
+        CARROT("carrot", FertilizerTypes.DIRT),
+        POTATO("potato", FertilizerTypes.DIRT),
+        NETHER_WART("nether_wart", FertilizerTypes.SOUL_SAND),
+        BROCCOLI("broccoli", FertilizerTypes.COLD);
 
         private final String name;
+        private final FertilizerTypes bestType;
 
-        CropTypes(String name) {
+        CropTypes(String name, FertilizerTypes bestType) {
             this.name = name;
+            this.bestType = bestType;
         }
 
         public String toString() {
