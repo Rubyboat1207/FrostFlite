@@ -2,6 +2,8 @@ package rubyboat.modbattle.customBlocks;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.entity.EntityType;
+import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
@@ -46,17 +48,40 @@ public class GrowingPlotBlock extends Block {
                 player.getStackInHand(hand).decrement(1);
                 return ActionResult.SUCCESS;
             }
+            if(player.getStackInHand(hand).getItem() == Items.ICE) {
+                world.setBlockState(pos, state.with(FERTILIZER, FertilizerTypes.COLD));
+                player.getStackInHand(hand).decrement(1);
+                return ActionResult.SUCCESS;
+            }
         }
         else if(plotCanAcceptSeeds(state))
         {
             if(player.getStackInHand(hand).getItem() == Items.WHEAT_SEEDS) {
                 player.getStackInHand(hand).decrement(1);
                 world.setBlockState(pos, state.with(CROP, CropTypes.WHEAT_SEEDS));
+                return ActionResult.SUCCESS;
             }
             if(player.getStackInHand(hand).getItem() == Main.BROCCOLI_SEEDS) {
                 player.getStackInHand(hand).decrement(1);
                 world.setBlockState(pos, state.with(CROP, CropTypes.BROCCOLI));
+                return ActionResult.SUCCESS;
             }
+        }else if(state.get(CROP) != CropTypes.NONE && state.get(AGE) == 7)
+        {
+            if(state.get(CROP) == CropTypes.BROCCOLI)
+            {
+                world.spawnEntity(new ItemEntity(world, pos.getX(), pos.getY(), pos.getZ(), new ItemStack(Main.BROCCOLI_SEEDS, 2)));
+
+                world.spawnEntity(new ItemEntity(world, pos.getX(), pos.getY(), pos.getZ(),new ItemStack(Main.BROCCOLI, 2)));
+            }
+            if(state.get(CROP) == CropTypes.WHEAT_SEEDS)
+            {
+                new ItemEntity(world, pos.getX(), pos.getY(), pos.getZ(), new ItemStack(Items.WHEAT_SEEDS, 2));
+                new ItemEntity(world, pos.getX(), pos.getY(), pos.getZ(),new ItemStack(Items.WHEAT, 3));
+            }
+
+            //set the age to 0
+            world.setBlockState(pos, state.with(AGE, 0));
         }
 
         return ActionResult.PASS;
@@ -73,10 +98,10 @@ public class GrowingPlotBlock extends Block {
 
     @Override
     public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
-        if(random.nextInt(6) < getCropEfficiency(state))
+        if(random.nextInt(5) < getCropEfficiency(state) && state.get(CROP) != CropTypes.NONE)
         {
-            //increment the age
-            world.setBlockState(pos, state.with(AGE, state.get(AGE) + 1));
+            //increment the age but only if its less than 7
+            world.setBlockState(pos, state.with(AGE, Math.min(state.get(AGE) + random.nextInt(1,2), 7)));
         }
     }
 

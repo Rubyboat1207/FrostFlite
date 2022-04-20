@@ -3,8 +3,7 @@
 	"textures": {
 		"0": "minecraft:block/oak_planks",
 		"1": "minecraft:block/white_stained_glass",
-		"2": "#fertilizer",
-		"3": "#hash",
+		"2": "minecraft:block/packed_ice",
 		"particle": "minecraft:block/oak_planks"
 	},
 	"ambientocclusion": false,
@@ -393,56 +392,6 @@
 				"up": {"uv": [0, 0, 16, 1], "texture": "#0"},
 				"down": {"uv": [0, 0, 16, 1], "texture": "#0"}
 			}
-		},
-		{
-			"from": [3.8, 4.85, 4.6],
-			"to": [12.8, 13.85, 4.6],
-			"faces": {
-				"north": {"uv": [0, 0, 16, 16], "texture": "#3"},
-				"east": {"uv": [0, 0, 16, 16], "texture": "#3"},
-				"south": {"uv": [0, 0, 16, 16], "texture": "#3"},
-				"west": {"uv": [0, 0, 16, 16], "texture": "#3"},
-				"up": {"uv": [0, 0, 16, 16], "texture": "#3"},
-				"down": {"uv": [0, 0, 16, 16], "texture": "#3"}
-			}
-		},
-		{
-			"from": [3.8, 4.85, 11.6],
-			"to": [12.8, 13.85, 11.6],
-			"faces": {
-				"north": {"uv": [0, 0, 16, 16], "texture": "#3"},
-				"east": {"uv": [0, 0, 16, 16], "texture": "#3"},
-				"south": {"uv": [0, 0, 16, 16], "texture": "#3"},
-				"west": {"uv": [0, 0, 16, 16], "texture": "#3"},
-				"up": {"uv": [0, 0, 16, 16], "texture": "#3"},
-				"down": {"uv": [0, 0, 16, 16], "texture": "#3"}
-			}
-		},
-		{
-			"from": [11.8, 4.85, 3.6],
-			"to": [11.8, 13.85, 12.6],
-			"rotation": {"angle": 0, "axis": "y", "origin": [7.5, 9.35, 8.5]},
-			"faces": {
-				"north": {"uv": [0, 0, 16, 16], "texture": "#3"},
-				"east": {"uv": [0, 0, 16, 16], "texture": "#3"},
-				"south": {"uv": [0, 0, 16, 16], "texture": "#3"},
-				"west": {"uv": [0, 0, 16, 16], "texture": "#3"},
-				"up": {"uv": [0, 0, 16, 16], "texture": "#3"},
-				"down": {"uv": [0, 0, 16, 16], "texture": "#3"}
-			}
-		},
-		{
-			"from": [4.8, 4.85, 3.6],
-			"to": [4.8, 13.85, 12.6],
-			"rotation": {"angle": 0, "axis": "y", "origin": [7.5, 9.35, 8.5]},
-			"faces": {
-				"north": {"uv": [0, 0, 16, 16], "texture": "#3"},
-				"east": {"uv": [0, 0, 16, 16], "texture": "#3"},
-				"south": {"uv": [0, 0, 16, 16], "texture": "#3"},
-				"west": {"uv": [0, 0, 16, 16], "texture": "#3"},
-				"up": {"uv": [0, 0, 16, 16], "texture": "#3"},
-				"down": {"uv": [0, 0, 16, 16], "texture": "#3"}
-			}
 		}
 	],
 	"groups": [
@@ -463,10 +412,6 @@
 			"origin": [0, 0, 0],
 			"color": 0,
 			"children": [25, 26, 27, 28, 29]
-		},
-		30,
-		31,
-		32,
-		33
+		}
 	]
 }

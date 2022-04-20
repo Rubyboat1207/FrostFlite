@@ -1,0 +1,7 @@
+{
+  "parent": "rbmodbattle:block/growing_plot/template_hash",
+  "textures": {
+    "hash": "minecraft:block/wheat_stage7",
+    "fertilizer": "minecraft:block/farmland_moist"
+  }
+}

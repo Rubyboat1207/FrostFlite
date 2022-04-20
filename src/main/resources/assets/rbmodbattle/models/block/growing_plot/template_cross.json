@@ -5,8 +5,9 @@
 		"1": "minecraft:block/white_stained_glass",
 		"2": "#fertilizer",
 		"3": "#cross",
-		"particle": "rbmodbattle:block/oak_planks"
+		"particle": "minecraft:block/oak_planks"
 	},
+	"ambientocclusion": false,
 	"elements": [
 		{
 			"from": [0, 5, 15],

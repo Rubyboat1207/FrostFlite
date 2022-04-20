@@ -5,6 +5,7 @@
 		"1": "minecraft:block/white_stained_glass",
 		"particle": "minecraft:block/oak_planks"
 	},
+	"ambientocclusion": false,
 	"elements": [
 		{
 			"from": [0, 5, 15],

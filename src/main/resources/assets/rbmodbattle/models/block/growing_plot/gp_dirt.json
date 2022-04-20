@@ -6,6 +6,7 @@
 		"2": "minecraft:block/farmland_moist",
 		"particle": "minecraft:block/oak_planks"
 	},
+	"ambientocclusion": false,
 	"elements": [
 		{
 			"from": [0, 5, 15],

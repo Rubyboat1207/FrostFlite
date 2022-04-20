@@ -6,8 +6,56 @@
     "fertilizer=dirt,crop=none": {
       "model": "rbmodbattle:block/growing_plot/gp_dirt"
     },
-    "fertilizer=dirt,crop=wheat": {
-      "model": "rbmodbattle:block/growing_plot/gp_dirt_wheat"
+    "fertilizer=cold,crop=none": {
+      "model": "rbmodbattle:block/growing_plot/gp_cold"
+    },
+    "fertilizer=dirt,crop=wheat,age=0": {
+      "model": "rbmodbattle:block/growing_plot/wheat/gp_dirt_wheat0"
+    },
+    "fertilizer=dirt,crop=wheat,age=1": {
+      "model": "rbmodbattle:block/growing_plot/wheat/gp_dirt_wheat1"
+    },
+    "fertilizer=dirt,crop=wheat,age=2": {
+      "model": "rbmodbattle:block/growing_plot/wheat/gp_dirt_wheat2"
+    },
+    "fertilizer=dirt,crop=wheat,age=3": {
+      "model": "rbmodbattle:block/growing_plot/wheat/gp_dirt_wheat3"
+    },
+    "fertilizer=dirt,crop=wheat,age=4": {
+      "model": "rbmodbattle:block/growing_plot/wheat/gp_dirt_wheat4"
+    },
+    "fertilizer=dirt,crop=wheat,age=5": {
+      "model": "rbmodbattle:block/growing_plot/wheat/gp_dirt_wheat5"
+    },
+    "fertilizer=dirt,crop=wheat,age=6": {
+      "model": "rbmodbattle:block/growing_plot/wheat/gp_dirt_wheat6"
+    },
+    "fertilizer=dirt,crop=wheat,age=7": {
+      "model": "rbmodbattle:block/growing_plot/wheat/gp_dirt_wheat7"
+    },
+    "fertilizer=cold,crop=wheat,age=0": {
+      "model": "rbmodbattle:block/growing_plot/wheat/gp_cold_wheat0"
+    },
+    "fertilizer=cold,crop=wheat,age=1": {
+      "model": "rbmodbattle:block/growing_plot/wheat/gp_cold_wheat1"
+    },
+    "fertilizer=cold,crop=wheat,age=2": {
+      "model": "rbmodbattle:block/growing_plot/wheat/gp_cold_wheat2"
+    },
+    "fertilizer=cold,crop=wheat,age=3": {
+      "model": "rbmodbattle:block/growing_plot/wheat/gp_cold_wheat3"
+    },
+    "fertilizer=cold,crop=wheat,age=4": {
+      "model": "rbmodbattle:block/growing_plot/wheat/gp_cold_wheat4"
+    },
+    "fertilizer=cold,crop=wheat,age=5": {
+      "model": "rbmodbattle:block/growing_plot/wheat/gp_cold_wheat5"
+    },
+    "fertilizer=cold,crop=wheat,age=6": {
+      "model": "rbmodbattle:block/growing_plot/wheat/gp_cold_wheat6"
+    },
+    "fertilizer=cold,crop=wheat,age=7": {
+      "model": "rbmodbattle:block/growing_plot/wheat/gp_cold_wheat7"
     },
     "fertilizer=dirt,crop=broccoli,age=0": {
       "model": "rbmodbattle:block/growing_plot/broccoli/gp_dirt_broccoli0"
@@ -32,6 +80,30 @@
     },
     "fertilizer=dirt,crop=broccoli,age=7": {
       "model": "rbmodbattle:block/growing_plot/broccoli/gp_dirt_broccoli3"
+    },
+    "fertilizer=cold,crop=broccoli,age=0": {
+      "model": "rbmodbattle:block/growing_plot/broccoli/gp_cold_broccoli0"
+    },
+    "fertilizer=cold,crop=broccoli,age=1": {
+      "model": "rbmodbattle:block/growing_plot/broccoli/gp_cold_broccoli0"
+    },
+    "fertilizer=cold,crop=broccoli,age=2": {
+      "model": "rbmodbattle:block/growing_plot/broccoli/gp_cold_broccoli1"
+    },
+    "fertilizer=cold,crop=broccoli,age=3": {
+      "model": "rbmodbattle:block/growing_plot/broccoli/gp_cold_broccoli1"
+    },
+    "fertilizer=cold,crop=broccoli,age=4": {
+      "model": "rbmodbattle:block/growing_plot/broccoli/gp_cold_broccoli1"
+    },
+    "fertilizer=cold,crop=broccoli,age=5": {
+      "model": "rbmodbattle:block/growing_plot/broccoli/gp_cold_broccoli2"
+    },
+    "fertilizer=cold,crop=broccoli,age=6": {
+      "model": "rbmodbattle:block/growing_plot/broccoli/gp_cold_broccoli2"
+    },
+    "fertilizer=cold,crop=broccoli,age=7": {
+      "model": "rbmodbattle:block/growing_plot/broccoli/gp_cold_broccoli3"
     }
   }
 }
