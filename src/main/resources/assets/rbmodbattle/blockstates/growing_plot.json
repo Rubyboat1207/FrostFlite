@@ -61,49 +61,97 @@
       "model": "rbmodbattle:block/growing_plot/broccoli/gp_dirt_broccoli0"
     },
     "fertilizer=dirt,crop=broccoli,age=1": {
-      "model": "rbmodbattle:block/growing_plot/broccoli/gp_dirt_broccoli0"
+      "model": "rbmodbattle:block/growing_plot/broccoli/gp_dirt_broccoli1"
     },
     "fertilizer=dirt,crop=broccoli,age=2": {
-      "model": "rbmodbattle:block/growing_plot/broccoli/gp_dirt_broccoli1"
+      "model": "rbmodbattle:block/growing_plot/broccoli/gp_dirt_broccoli2"
     },
     "fertilizer=dirt,crop=broccoli,age=3": {
-      "model": "rbmodbattle:block/growing_plot/broccoli/gp_dirt_broccoli1"
-    },
-    "fertilizer=dirt,crop=broccoli,age=4": {
-      "model": "rbmodbattle:block/growing_plot/broccoli/gp_dirt_broccoli1"
-    },
-    "fertilizer=dirt,crop=broccoli,age=5": {
-      "model": "rbmodbattle:block/growing_plot/broccoli/gp_dirt_broccoli2"
-    },
-    "fertilizer=dirt,crop=broccoli,age=6": {
-      "model": "rbmodbattle:block/growing_plot/broccoli/gp_dirt_broccoli2"
-    },
-    "fertilizer=dirt,crop=broccoli,age=7": {
       "model": "rbmodbattle:block/growing_plot/broccoli/gp_dirt_broccoli3"
     },
     "fertilizer=cold,crop=broccoli,age=0": {
       "model": "rbmodbattle:block/growing_plot/broccoli/gp_cold_broccoli0"
     },
     "fertilizer=cold,crop=broccoli,age=1": {
-      "model": "rbmodbattle:block/growing_plot/broccoli/gp_cold_broccoli0"
+      "model": "rbmodbattle:block/growing_plot/broccoli/gp_cold_broccoli1"
     },
     "fertilizer=cold,crop=broccoli,age=2": {
-      "model": "rbmodbattle:block/growing_plot/broccoli/gp_cold_broccoli1"
+      "model": "rbmodbattle:block/growing_plot/broccoli/gp_cold_broccoli2"
     },
     "fertilizer=cold,crop=broccoli,age=3": {
-      "model": "rbmodbattle:block/growing_plot/broccoli/gp_cold_broccoli1"
-    },
-    "fertilizer=cold,crop=broccoli,age=4": {
-      "model": "rbmodbattle:block/growing_plot/broccoli/gp_cold_broccoli1"
-    },
-    "fertilizer=cold,crop=broccoli,age=5": {
-      "model": "rbmodbattle:block/growing_plot/broccoli/gp_cold_broccoli2"
-    },
-    "fertilizer=cold,crop=broccoli,age=6": {
-      "model": "rbmodbattle:block/growing_plot/broccoli/gp_cold_broccoli2"
-    },
-    "fertilizer=cold,crop=broccoli,age=7": {
       "model": "rbmodbattle:block/growing_plot/broccoli/gp_cold_broccoli3"
+    },
+    "fertilizer=dirt,crop=beetroots,age=0": {
+      "model": "rbmodbattle:block/growing_plot/beetroots/gp_dirt_beetroots0"
+    },
+    "fertilizer=cold,crop=beetroots,age=0": {
+      "model": "rbmodbattle:block/growing_plot/beetroots/gp_cold_beetroots0"
+    },
+    "fertilizer=dirt,crop=beetroots,age=1": {
+      "model": "rbmodbattle:block/growing_plot/beetroots/gp_dirt_beetroots1"
+    },
+    "fertilizer=cold,crop=beetroots,age=1": {
+      "model": "rbmodbattle:block/growing_plot/beetroots/gp_cold_beetroots1"
+    },
+    "fertilizer=dirt,crop=beetroots,age=2": {
+      "model": "rbmodbattle:block/growing_plot/beetroots/gp_dirt_beetroots2"
+    },
+    "fertilizer=cold,crop=beetroots,age=2": {
+      "model": "rbmodbattle:block/growing_plot/beetroots/gp_cold_beetroots2"
+    },
+    "fertilizer=dirt,crop=beetroots,age=3": {
+      "model": "rbmodbattle:block/growing_plot/beetroots/gp_dirt_beetroots3"
+    },
+    "fertilizer=cold,crop=beetroots,age=3": {
+      "model": "rbmodbattle:block/growing_plot/beetroots/gp_cold_beetroots3"
+    },
+    "fertilizer=dirt,crop=potatoes,age=0": {
+      "model": "rbmodbattle:block/growing_plot/potatoes/gp_dirt_potatoes0"
+    },
+    "fertilizer=cold,crop=potatoes,age=0": {
+      "model": "rbmodbattle:block/growing_plot/potatoes/gp_cold_potatoes0"
+    },
+    "fertilizer=dirt,crop=potatoes,age=1": {
+      "model": "rbmodbattle:block/growing_plot/potatoes/gp_dirt_potatoes1"
+    },
+    "fertilizer=cold,crop=potatoes,age=1": {
+      "model": "rbmodbattle:block/growing_plot/potatoes/gp_cold_potatoes1"
+    },
+    "fertilizer=dirt,crop=potatoes,age=2": {
+      "model": "rbmodbattle:block/growing_plot/potatoes/gp_dirt_potatoes2"
+    },
+    "fertilizer=cold,crop=potatoes,age=2": {
+      "model": "rbmodbattle:block/growing_plot/potatoes/gp_cold_potatoes2"
+    },
+    "fertilizer=dirt,crop=potatoes,age=3": {
+      "model": "rbmodbattle:block/growing_plot/potatoes/gp_dirt_potatoes3"
+    },
+    "fertilizer=cold,crop=potatoes,age=3": {
+      "model": "rbmodbattle:block/growing_plot/potatoes/gp_cold_potatoes3"
+    },
+    "fertilizer=dirt,crop=carrots,age=0": {
+      "model": "rbmodbattle:block/growing_plot/carrots/gp_dirt_carrots0"
+    },
+    "fertilizer=cold,crop=carrots,age=0": {
+      "model": "rbmodbattle:block/growing_plot/carrots/gp_cold_carrots0"
+    },
+    "fertilizer=dirt,crop=carrots,age=1": {
+      "model": "rbmodbattle:block/growing_plot/carrots/gp_dirt_carrots1"
+    },
+    "fertilizer=cold,crop=carrots,age=1": {
+      "model": "rbmodbattle:block/growing_plot/carrots/gp_cold_carrots1"
+    },
+    "fertilizer=dirt,crop=carrots,age=2": {
+      "model": "rbmodbattle:block/growing_plot/carrots/gp_dirt_carrots2"
+    },
+    "fertilizer=cold,crop=carrots,age=2": {
+      "model": "rbmodbattle:block/growing_plot/carrots/gp_cold_carrots2"
+    },
+    "fertilizer=dirt,crop=carrots,age=3": {
+      "model": "rbmodbattle:block/growing_plot/carrots/gp_dirt_carrots3"
+    },
+    "fertilizer=cold,crop=carrots,age=3": {
+      "model": "rbmodbattle:block/growing_plot/carrots/gp_cold_carrots3"
     }
   }
 }

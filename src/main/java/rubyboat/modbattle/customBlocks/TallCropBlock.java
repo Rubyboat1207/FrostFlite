@@ -60,7 +60,6 @@ public class TallCropBlock extends TallPlantBlock implements Fertilizable {
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
         if(world.getBlockState(pos).get(isGrown)) {
             world.setBlockState(new BlockPos(pos).add(0,world.getBlockState(pos).get(HALF) == DoubleBlockHalf.UPPER ? -1 : 1,0), state.with(isGrown, false));
-            world.spawnEntity(new ItemEntity(world, pos.getX(), pos.getY(), pos.getZ(), new ItemStack(Main.CORN_SEEDS)));
             return ActionResult.SUCCESS;
         }
         return ActionResult.PASS;
