@@ -30,6 +30,7 @@ public class GrowingPlotBlock extends Block {
     public static EnumProperty<FertilizerTypes> FERTILIZER = EnumProperty.of("fertilizer", FertilizerTypes.class);
     public static EnumProperty<CropTypes> CROP = EnumProperty.of("crop", CropTypes.class);
     public static IntProperty AGE = IntProperty.of("age",0,7);
+    public static BooleanProperty CAN_AGE = BooleanProperty.of("can_age");
 
     public GrowingPlotBlock(Settings settings) {
         super(settings);
@@ -162,7 +163,11 @@ public class GrowingPlotBlock extends Block {
 
     public void incrementAge(World world, BlockPos pos, BlockState state, Random random)
     {
-        world.setBlockState(pos, state.with(AGE, Math.min(state.get(AGE) + random.nextInt(1,2), state.get(CROP).maxAge)));
+        world.updateNeighbors(pos, this);
+        if(state.get(CAN_AGE))
+        {
+            world.setBlockState(pos, state.with(AGE, Math.min(state.get(AGE) + random.nextInt(1,2), state.get(CROP).maxAge)));
+        }
     }
 
     //ENUMS
@@ -219,5 +224,6 @@ public class GrowingPlotBlock extends Block {
         builder.add(FERTILIZER);
         builder.add(CROP);
         builder.add(AGE);
+        builder.add(CAN_AGE);
     }
 }
