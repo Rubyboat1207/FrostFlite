@@ -2,6 +2,9 @@ package rubyboat.modbattle.customBlocks;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
+import net.minecraft.block.HopperBlock;
+import net.minecraft.block.entity.HopperBlockEntity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -55,7 +58,7 @@ public class GrowingPlotBlock extends Block {
                 return ActionResult.SUCCESS;
             }
         }
-        else if(plotCanAcceptSeeds(state))
+        else if(plotCanAcceptSeeds(state) )
         {
             if(player.getStackInHand(hand).getItem() == Items.WHEAT_SEEDS) {
                 player.getStackInHand(hand).decrement(1);
@@ -82,40 +85,51 @@ public class GrowingPlotBlock extends Block {
                 world.setBlockState(pos, state.with(CROP, CropTypes.CARROT));
                 return ActionResult.SUCCESS;
             }
-        }else if(state.get(CROP) != CropTypes.NONE && state.get(AGE) == state.get(CROP).maxAge)
+        }else if(state.get(CROP) != CropTypes.NONE && state.get(AGE) == state.get(CROP).maxAge && player.getStackInHand(hand).getItem() != Items.BONE_MEAL)
         {
-            if(state.get(CROP) == CropTypes.BROCCOLI)
-            {
-                world.spawnEntity(new ItemEntity(world, pos.getX(), pos.getY(), pos.getZ(), new ItemStack(Main.BROCCOLI_SEEDS, 2)));
-                world.spawnEntity(new ItemEntity(world, pos.getX(), pos.getY() + 1, pos.getZ(),new ItemStack(Main.BROCCOLI, 2)));
-            }
-            if(state.get(CROP) == CropTypes.WHEAT_SEEDS)
-            {
-                world.spawnEntity(new ItemEntity(world, pos.getX(), pos.getY(), pos.getZ(), new ItemStack(Items.WHEAT_SEEDS, 2)));
-                world.spawnEntity(new ItemEntity(world, pos.getX(), pos.getY() + 1, pos.getZ(),new ItemStack(Items.WHEAT, 3)));
-            }
-            if(state.get(CROP) == CropTypes.BEETROOT_SEEDS)
-            {
-                world.spawnEntity(new ItemEntity(world, pos.getX(), pos.getY(), pos.getZ(), new ItemStack(Items.BEETROOT_SEEDS, 2)));
-                world.spawnEntity(new ItemEntity(world, pos.getX(), pos.getY() + 1, pos.getZ(),new ItemStack(Items.BEETROOT, 3)));
-            }
-            if(state.get(CROP) == CropTypes.POTATO)
-            {
-                world.spawnEntity(new ItemEntity(world, pos.getX(), pos.getY() + 1, pos.getZ(),new ItemStack(Items.POTATO, 3)));
-            }
-            if(state.get(CROP) == CropTypes.CARROT)
-            {
-                world.spawnEntity(new ItemEntity(world, pos.getX(), pos.getY() + 1, pos.getZ(),new ItemStack(Items.CARROT, 3)));
-            }
-            //set the age to 0
-            world.setBlockState(pos, state.with(AGE, 0));
+            DropSeeds(state,world,pos);
             return ActionResult.SUCCESS;
-        }//else if(player.getStackInHand(hand).getItem() == )
+        }else if(player.getStackInHand(hand).getItem() == Items.BONE_MEAL && !(state.get(CROP) != CropTypes.NONE && state.get(AGE) == state.get(CROP).maxAge))
+        {
+            incrementAge(world, pos, state, new Random());
+            return ActionResult.SUCCESS;
+        }
+
+        //else if(player.getStackInHand(hand).getItem() == )
         //{
 
         //}
 
         return ActionResult.PASS;
+    }
+
+    public void DropSeeds(BlockState state, World world, BlockPos pos)
+    {
+        if(state.get(CROP) == CropTypes.BROCCOLI)
+        {
+            world.spawnEntity(new ItemEntity(world, pos.getX(), pos.getY(), pos.getZ(), new ItemStack(Main.BROCCOLI_SEEDS, 2)));
+            world.spawnEntity(new ItemEntity(world, pos.getX(), pos.getY() + 1, pos.getZ(),new ItemStack(Main.BROCCOLI, 2)));
+        }
+        if(state.get(CROP) == CropTypes.WHEAT_SEEDS)
+        {
+            world.spawnEntity(new ItemEntity(world, pos.getX(), pos.getY(), pos.getZ(), new ItemStack(Items.WHEAT_SEEDS, 2)));
+            world.spawnEntity(new ItemEntity(world, pos.getX(), pos.getY() + 1, pos.getZ(),new ItemStack(Items.WHEAT, 3)));
+        }
+        if(state.get(CROP) == CropTypes.BEETROOT_SEEDS)
+        {
+            world.spawnEntity(new ItemEntity(world, pos.getX(), pos.getY(), pos.getZ(), new ItemStack(Items.BEETROOT_SEEDS, 2)));
+            world.spawnEntity(new ItemEntity(world, pos.getX(), pos.getY() + 1, pos.getZ(),new ItemStack(Items.BEETROOT, 3)));
+        }
+        if(state.get(CROP) == CropTypes.POTATO)
+        {
+            world.spawnEntity(new ItemEntity(world, pos.getX(), pos.getY() + 1, pos.getZ(),new ItemStack(Items.POTATO, 3)));
+        }
+        if(state.get(CROP) == CropTypes.CARROT)
+        {
+            world.spawnEntity(new ItemEntity(world, pos.getX(), pos.getY() + 1, pos.getZ(),new ItemStack(Items.CARROT, 3)));
+        }
+        //set the age to 0
+        world.setBlockState(pos, state.with(AGE, 0));
     }
 
     public int getCropEfficiency(BlockState state)
@@ -128,12 +142,27 @@ public class GrowingPlotBlock extends Block {
     }
 
     @Override
+    public boolean hasComparatorOutput(BlockState state) {
+        return true;
+    }
+
+    @Override
+    public int getComparatorOutput(BlockState state, World world, BlockPos pos) {
+        return (int) Math.ceil(((float) state.get(AGE)) / state.get(CROP).maxAge * 15);
+    }
+
+    @Override
     public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
         if(random.nextInt(5) < getCropEfficiency(state) && state.get(CROP) != CropTypes.NONE)
         {
             //increment the age but only if its less than 7
-            world.setBlockState(pos, state.with(AGE, Math.min(state.get(AGE) + random.nextInt(1,2), state.get(CROP).maxAge)));
+            incrementAge(world, pos, state, random);
         }
+    }
+
+    public void incrementAge(World world, BlockPos pos, BlockState state, Random random)
+    {
+        world.setBlockState(pos, state.with(AGE, Math.min(state.get(AGE) + random.nextInt(1,2), state.get(CROP).maxAge)));
     }
 
     //ENUMS

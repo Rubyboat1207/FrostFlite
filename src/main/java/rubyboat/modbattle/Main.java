@@ -5,20 +5,26 @@ import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.mininglevel.v1.FabricMineableTags;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
-import net.minecraft.block.Block;
-import net.minecraft.block.Material;
-import net.minecraft.block.TallPlantBlock;
+import net.minecraft.block.*;
+import net.minecraft.block.dispenser.FallibleItemDispenserBehavior;
 import net.minecraft.client.item.ModelPredicateProviderRegistry;
 import net.minecraft.item.*;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.math.BlockPointer;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.registry.Registry;
+import net.minecraft.world.WorldEvents;
 import rubyboat.modbattle.customBlocks.BroccoliPlantBlock;
 import rubyboat.modbattle.customBlocks.GrowingPlotBlock;
 import rubyboat.modbattle.customBlocks.TallCropBlock;
 import rubyboat.modbattle.items.FarmingElytra;
 import rubyboat.modbattle.items.FarmingElytraEquipmentProvider;
 import rubyboat.modbattle.items.seedPackages.SeedBundle;
+
+import java.util.Optional;
+import java.util.Random;
 
 public class Main implements ModInitializer {
     /*
@@ -73,6 +79,18 @@ public class Main implements ModInitializer {
             Items.NETHER_WART,
             Main.BROCCOLI_SEEDS
     };
+
+    /*public void dispenserBehavior(BlockPointer pointer, ItemStack stack) {
+        BlockPos blockPos = pointer.getPos().offset(pointer.getBlockState().get(DispenserBlock.FACING));
+        ServerWorld world = pointer.getWorld();
+        BlockState blockState = world.getBlockState(blockPos);
+        if(blockState.isOf(Main.GROWING_PLOT_BLOCK) && blockState.get(GrowingPlotBlock.AGE) >= blockState.get(GrowingPlotBlock.CROP).maxAge){
+            GrowingPlotBlock plot = (GrowingPlotBlock) (blockState).getBlock();
+            plot.DropSeeds(blockState, world, blockPos);
+        }
+    }
+    */
+
     @Override
     public void onInitialize() {
         Registry.register(Registry.ITEM, new Identifier(MOD_ID, "farming_elytra"), FARMING_ELYTRA);
@@ -95,5 +113,30 @@ public class Main implements ModInitializer {
         ModelPredicateProviderRegistry.register(BAMBOO_BUNDLE, new Identifier(MOD_ID, "has_items"), (stack, world, entity, seed) -> stack.getOrCreateNbt().getInt(SeedBundle.KEY) > 0 ? 1 : 0);
         ModelPredicateProviderRegistry.register(NETHER_WART_BUNDLE, new Identifier(MOD_ID, "has_items"), (stack, world, entity, seed) -> stack.getOrCreateNbt().getInt(SeedBundle.KEY) > 0 ? 1 : 0);
         ModelPredicateProviderRegistry.register(BROCCOLI_BUNDLE, new Identifier(MOD_ID, "has_items"), (stack, world, entity, seed) -> stack.getOrCreateNbt().getInt(SeedBundle.KEY) > 0 ? 1 : 0);
+        //Dispenser Behavior
+        DispenserBlock.registerBehavior(Items.WOODEN_HOE, new GrowingPlotDispenserBehavior());
+        DispenserBlock.registerBehavior(Items.STONE_HOE, new GrowingPlotDispenserBehavior());
+        DispenserBlock.registerBehavior(Items.IRON_HOE, new GrowingPlotDispenserBehavior());
+        DispenserBlock.registerBehavior(Items.DIAMOND_HOE, new GrowingPlotDispenserBehavior());
+        DispenserBlock.registerBehavior(Items.NETHERITE_HOE, new GrowingPlotDispenserBehavior());
+        DispenserBlock.registerBehavior(Items.BONE_MEAL, new FallibleItemDispenserBehavior(){
+
+            @Override
+            protected ItemStack dispenseSilently(BlockPointer pointer, ItemStack stack) {
+                this.setSuccess(true);
+                ServerWorld world = pointer.getWorld();
+                BlockPos blockPos = pointer.getPos().offset(pointer.getBlockState().get(DispenserBlock.FACING));
+                if (world.getBlockState(blockPos).getBlock() instanceof GrowingPlotBlock && world.getBlockState(blockPos).get(GrowingPlotBlock.AGE) < world.getBlockState(blockPos).get(GrowingPlotBlock.CROP).maxAge) {
+                    if (!world.isClient) {
+                        world.syncWorldEvent(WorldEvents.BONE_MEAL_USED, blockPos, 0);
+                        ((GrowingPlotBlock) world.getBlockState(blockPos).getBlock()).incrementAge(world, blockPos, world.getBlockState(blockPos), new Random());
+                    }
+                } else {
+                    this.setSuccess(false);
+                }
+                stack.decrement(1);
+                return stack;
+            }
+        });
     }
 }
