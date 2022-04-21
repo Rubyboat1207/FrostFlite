@@ -1,0 +1,7 @@
+{
+  "parent": "rbmodbattle:block/growing_plot/template_hash",
+  "textures": {
+    "hash": "rbmodbattle:block/winterberry_stage3",
+    "fertilizer": "minecraft:block/packed_ice"
+  }
+}

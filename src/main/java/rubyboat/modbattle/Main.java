@@ -7,6 +7,8 @@ import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.*;
 import net.minecraft.block.dispenser.FallibleItemDispenserBehavior;
 import net.minecraft.client.item.ModelPredicateProviderRegistry;
+import net.minecraft.entity.effect.StatusEffectInstance;
+import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.item.*;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.BlockSoundGroup;
@@ -17,11 +19,17 @@ import net.minecraft.util.registry.Registry;
 import net.minecraft.world.WorldEvents;
 import rubyboat.modbattle.customBlocks.BroccoliPlantBlock;
 import rubyboat.modbattle.customBlocks.GrowingPlotBlock;
+import rubyboat.modbattle.customBlocks.WinterBerryBushBlock;
 import rubyboat.modbattle.items.FarmingElytra;
 import rubyboat.modbattle.items.FarmingElytraEquipmentProvider;
 import rubyboat.modbattle.items.WinterBerryItem;
 import rubyboat.modbattle.items.seedPackages.SeedBundle;
+import totemapi.rubyboat.TotemItem;
+import totemapi.rubyboat.effects.AOEEffect;
+import totemapi.rubyboat.effects.AndEffect;
+import totemapi.rubyboat.effects.FreezeEffect;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 public class Main implements ModInitializer {
@@ -53,6 +61,10 @@ public class Main implements ModInitializer {
     public static final BroccoliPlantBlock BROCCOLI_PLANT = new BroccoliPlantBlock(FabricBlockSettings.of(Material.PLANT).ticksRandomly().breakInstantly().sounds(BlockSoundGroup.CROP).nonOpaque().collidable(false));
     public static final Item BROCCOLI_SEEDS = new BlockItem(BROCCOLI_PLANT, new FabricItemSettings().group(Main.RB_MODBATTLE_GROUP).maxCount(64));
 
+    public static final WinterBerryBushBlock WINTERBERRY_BUSH = new WinterBerryBushBlock(FabricBlockSettings.of(Material.PLANT).ticksRandomly().breakInstantly().sounds(BlockSoundGroup.CROP).nonOpaque().collidable(false));
+    public static final FoodComponent WINTERBERRY_FOOD = new FoodComponent.Builder().hunger(6).saturationModifier(0.6f).build();
+    public static final Item WINTERBERRY = new BlockItem(WINTERBERRY_BUSH, new FabricItemSettings().group(Main.RB_MODBATTLE_GROUP).maxCount(64).food(WINTERBERRY_FOOD));
+
     public static final SeedBundle POTATO_BUNDLE = new SeedBundle(new FabricItemSettings().group(Main.RB_MODBATTLE_GROUP).maxCount(1), (BlockItem) Items.POTATO);
     public static final SeedBundle CARROT_BUNDLE = new SeedBundle(new FabricItemSettings().group(Main.RB_MODBATTLE_GROUP).maxCount(1), (BlockItem) Items.CARROT);
     public static final SeedBundle WHEAT_SEEDS_BUNDLE = new SeedBundle(new FabricItemSettings().group(Main.RB_MODBATTLE_GROUP).maxCount(1), (BlockItem) Items.WHEAT_SEEDS);
@@ -60,12 +72,11 @@ public class Main implements ModInitializer {
     public static final SeedBundle BAMBOO_BUNDLE = new SeedBundle(new FabricItemSettings().group(Main.RB_MODBATTLE_GROUP).maxCount(1), (BlockItem) Items.BAMBOO);
     public static final SeedBundle NETHER_WART_BUNDLE = new SeedBundle(new FabricItemSettings().group(Main.RB_MODBATTLE_GROUP).maxCount(1), (BlockItem) Items.NETHER_WART);
     public static final SeedBundle BROCCOLI_BUNDLE = new SeedBundle(new FabricItemSettings().group(Main.RB_MODBATTLE_GROUP).maxCount(1), (BlockItem) Main.BROCCOLI_SEEDS);
+    public static final SeedBundle WINTERBERRY_BUNDLE = new SeedBundle(new FabricItemSettings().group(Main.RB_MODBATTLE_GROUP).maxCount(1), (BlockItem) Main.WINTERBERRY);
 
     public static final GrowingPlotBlock GROWING_PLOT_BLOCK = new GrowingPlotBlock(FabricBlockSettings.of(Material.WOOD).sounds(BlockSoundGroup.WOOD).nonOpaque().ticksRandomly().strength(3, 1).drops(new Identifier(MOD_ID, "blocks/growing_plot")));
     public static final Item GROWING_PLOT_ITEM = new BlockItem(GROWING_PLOT_BLOCK, new FabricItemSettings().group(Main.RB_MODBATTLE_GROUP).maxCount(64));
 
-    public static final BroccoliPlantBlock WINTERBERRY_BUSH = new BroccoliPlantBlock(FabricBlockSettings.of(Material.PLANT).ticksRandomly().breakInstantly().sounds(BlockSoundGroup.CROP).nonOpaque().collidable(false));
-    public static final Item WINTERBERRY = new WinterBerryItem(WINTERBERRY_BUSH, new FabricItemSettings().group(Main.RB_MODBATTLE_GROUP).maxCount(64));
 
 
     public static Item[] crops = new Item[] {
@@ -91,6 +102,7 @@ public class Main implements ModInitializer {
 
     @Override
     public void onInitialize() {
+        //bundles
         Registry.register(Registry.ITEM, new Identifier(MOD_ID, "farming_elytra"), FARMING_ELYTRA);
         Registry.register(Registry.ITEM, new Identifier(MOD_ID, "potato_bundle"), POTATO_BUNDLE);
         Registry.register(Registry.ITEM, new Identifier(MOD_ID, "carrot_bundle"), CARROT_BUNDLE);
@@ -99,15 +111,19 @@ public class Main implements ModInitializer {
         Registry.register(Registry.ITEM, new Identifier(MOD_ID, "bamboo_bundle"), BAMBOO_BUNDLE);
         Registry.register(Registry.ITEM, new Identifier(MOD_ID, "nether_wart_bundle"), NETHER_WART_BUNDLE);
         Registry.register(Registry.ITEM, new Identifier(MOD_ID, "broccoli_bundle"), BROCCOLI_BUNDLE);
+        Registry.register(Registry.ITEM, new Identifier(MOD_ID, "winterberry_bundle"), WINTERBERRY_BUNDLE);
+        //Broccoli
         Registry.register(Registry.ITEM, new Identifier(MOD_ID, "broccoli_seeds"), BROCCOLI_SEEDS);
         Registry.register(Registry.ITEM, new Identifier(MOD_ID, "broccoli"), BROCCOLI);
         Registry.register(Registry.BLOCK, new Identifier(MOD_ID, "broccoli"), BROCCOLI_PLANT);
+        //Growing Plot
         Registry.register(Registry.BLOCK, new Identifier(MOD_ID, "growing_plot"), GROWING_PLOT_BLOCK);
         Registry.register(Registry.ITEM, new Identifier(MOD_ID, "growing_plot"), GROWING_PLOT_ITEM);
+        //Winterberry
+        Registry.register(Registry.BLOCK, new Identifier(MOD_ID, "winterberry_bush"), WINTERBERRY_BUSH);
+        Registry.register(Registry.ITEM, new Identifier(MOD_ID, "winterberry"), WINTERBERRY);
 
-        Registry.register(Registry.BLOCK, new Identifier(MOD_ID, "winerberry_bush"), WINTERBERRY_BUSH);
-        Registry.register(Registry.ITEM, new Identifier(MOD_ID, "winerberry"), WINTERBERRY);
-
+        //Model Predicates
         ModelPredicateProviderRegistry.register(POTATO_BUNDLE, new Identifier(MOD_ID, "has_items"), (stack, world, entity, seed) -> stack.getOrCreateNbt().getInt(SeedBundle.KEY) > 0 ? 1 : 0);
         ModelPredicateProviderRegistry.register(CARROT_BUNDLE, new Identifier(MOD_ID, "has_items"), (stack, world, entity, seed) -> stack.getOrCreateNbt().getInt(SeedBundle.KEY) > 0 ? 1 : 0);
         ModelPredicateProviderRegistry.register(WHEAT_SEEDS_BUNDLE, new Identifier(MOD_ID, "has_items"), (stack, world, entity, seed) -> stack.getOrCreateNbt().getInt(SeedBundle.KEY) > 0 ? 1 : 0);
@@ -140,5 +156,7 @@ public class Main implements ModInitializer {
                 return stack;
             }
         });
+
+        //new TotemItem(new Item.Settings().group(Main.RB_MODBATTLE_GROUP), new Identifier(MOD_ID, "frozen_totem"), new ArrayList<StatusEffectInstance>() {{add(new StatusEffectInstance(StatusEffects.INVISIBILITY, 60*20, 0));add(new StatusEffectInstance(StatusEffects.REGENERATION, 15*20, 1));}},10, new AndEffect(new FreezeEffect(20), new AOEEffect(5,new StatusEffectInstance(StatusEffects.SLOWNESS, 15*20, 1))));
     }
 }

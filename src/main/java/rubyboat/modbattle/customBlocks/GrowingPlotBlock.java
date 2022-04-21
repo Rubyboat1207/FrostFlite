@@ -196,7 +196,8 @@ public class GrowingPlotBlock extends Block {
         BEETROOT_SEEDS("beetroots", FertilizerTypes.DIRT, 3),
         CARROT("carrots", FertilizerTypes.DIRT, 3),
         POTATO("potatoes", FertilizerTypes.DIRT, 3),
-        BROCCOLI("broccoli", FertilizerTypes.COLD, 3);
+        BROCCOLI("broccoli", FertilizerTypes.COLD, 3),
+        WINTERBERRY("winterberry", FertilizerTypes.COLD, 3);
 
         private final String name;
         private final FertilizerTypes bestType;
