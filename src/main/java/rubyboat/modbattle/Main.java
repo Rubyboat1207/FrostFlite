@@ -3,6 +3,7 @@ package rubyboat.modbattle;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
+import net.fabricmc.fabric.api.mininglevel.v1.FabricMineableTags;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.Block;
 import net.minecraft.block.Material;
@@ -23,7 +24,7 @@ public class Main implements ModInitializer {
     /*
     THEME: Flying, Frozen, Farming
     IDEAS:
-        (: - Elytra that plants crops as you fly
+        Elytra that plants crops as you fly
         Frozen crops that give you effects based on what they are grown in
         growing plots
         Irigated growing plots
@@ -56,8 +57,11 @@ public class Main implements ModInitializer {
     public static final SeedBundle NETHER_WART_BUNDLE = new SeedBundle(new FabricItemSettings().group(Main.RB_MODBATTLE_GROUP).maxCount(1), (BlockItem) Items.NETHER_WART);
     public static final SeedBundle BROCCOLI_BUNDLE = new SeedBundle(new FabricItemSettings().group(Main.RB_MODBATTLE_GROUP).maxCount(1), (BlockItem) Main.BROCCOLI_SEEDS);
 
-    public static final GrowingPlotBlock GROWING_PLOT_BLOCK = new GrowingPlotBlock(FabricBlockSettings.of(Material.WOOD).sounds(BlockSoundGroup.WOOD).nonOpaque().ticksRandomly());
+    public static final GrowingPlotBlock GROWING_PLOT_BLOCK = new GrowingPlotBlock(FabricBlockSettings.of(Material.WOOD).sounds(BlockSoundGroup.WOOD).nonOpaque().ticksRandomly().strength(3, 1).drops(new Identifier(MOD_ID, "blocks/growing_plot")));
     public static final Item GROWING_PLOT_ITEM = new BlockItem(GROWING_PLOT_BLOCK, new FabricItemSettings().group(Main.RB_MODBATTLE_GROUP).maxCount(64));
+
+    public static final BroccoliPlantBlock FROZENBERRY_BUSH = new BroccoliPlantBlock(FabricBlockSettings.of(Material.PLANT).ticksRandomly().breakInstantly().sounds(BlockSoundGroup.CROP).nonOpaque().collidable(false));
+    public static final Item FROZENBERRY = new BlockItem(FROZENBERRY_BUSH, new FabricItemSettings().group(Main.RB_MODBATTLE_GROUP).maxCount(64));
 
 
     public static Item[] crops = new Item[] {
