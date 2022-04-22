@@ -152,6 +152,30 @@
     },
     "fertilizer=cold,crop=carrots,age=3": {
       "model": "rbmodbattle:block/growing_plot/carrots/gp_cold_carrots3"
+    },
+    "fertilizer=cold,crop=winterberry,age=0": {
+      "model": "rbmodbattle:block/growing_plot/winterberry/gp_cold_winterberry0"
+    },
+    "fertilizer=dirt,crop=winterberry,age=0": {
+      "model": "rbmodbattle:block/growing_plot/winterberry/gp_dirt_winterberry0"
+    },
+    "fertilizer=cold,crop=winterberry,age=1": {
+      "model": "rbmodbattle:block/growing_plot/winterberry/gp_cold_winterberry1"
+    },
+    "fertilizer=dirt,crop=winterberry,age=1": {
+      "model": "rbmodbattle:block/growing_plot/winterberry/gp_dirt_winterberry1"
+    },
+    "fertilizer=cold,crop=winterberry,age=2": {
+      "model": "rbmodbattle:block/growing_plot/winterberry/gp_cold_winterberry2"
+    },
+    "fertilizer=dirt,crop=winterberry,age=2": {
+      "model": "rbmodbattle:block/growing_plot/winterberry/gp_dirt_winterberry2"
+    },
+    "fertilizer=cold,crop=winterberry,age=3": {
+      "model": "rbmodbattle:block/growing_plot/winterberry/gp_cold_winterberry3"
+    },
+    "fertilizer=dirt,crop=winterberry,age=3": {
+      "model": "rbmodbattle:block/growing_plot/winterberry/gp_dirt_winterberry3"
     }
   }
 }

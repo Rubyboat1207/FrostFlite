@@ -86,6 +86,11 @@ public class GrowingPlotBlock extends Block {
                 world.setBlockState(pos, state.with(CROP, CropTypes.CARROT));
                 return ActionResult.SUCCESS;
             }
+            if(player.getStackInHand(hand).getItem() == Main.WINTERBERRY) {
+                player.getStackInHand(hand).decrement(1);
+                world.setBlockState(pos, state.with(CROP, CropTypes.WINTERBERRY));
+                return ActionResult.SUCCESS;
+            }
         }else if(state.get(CROP) != CropTypes.NONE && state.get(AGE) == state.get(CROP).maxAge && player.getStackInHand(hand).getItem() != Items.BONE_MEAL)
         {
             DropSeeds(state,world,pos);
@@ -128,6 +133,10 @@ public class GrowingPlotBlock extends Block {
         if(state.get(CROP) == CropTypes.CARROT)
         {
             world.spawnEntity(new ItemEntity(world, pos.getX(), pos.getY() + 1, pos.getZ(),new ItemStack(Items.CARROT, 3)));
+        }
+        if(state.get(CROP) == CropTypes.WINTERBERRY)
+        {
+            world.spawnEntity(new ItemEntity(world, pos.getX(), pos.getY() + 1, pos.getZ(),new ItemStack(Main.WINTERBERRY, 2)));
         }
         //set the age to 0
         world.setBlockState(pos, state.with(AGE, 0));

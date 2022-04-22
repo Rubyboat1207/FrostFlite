@@ -1,0 +1,6 @@
+{
+  "parent": "rbmodbattle:item/winterberry_bundle",
+  "textures": {
+    "layer0": "rbmodbattle:item/winterberry_bundle_filled"
+  }
+}

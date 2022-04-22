@@ -1,7 +1,7 @@
 {
-  "parent": "rbmodbattle:block/growing_plot/template_hash",
-  "textures": {
-    "hash": "rbmodbattle:block/winterberry_stage2",
-    "fertilizer": "minecraft:block/farmland_moist"
-  }
+   "parent": "rbmodbattle:block/growing_plot/template_cross",
+   "textures": {
+       "cross": "rbmodbattle:block/winterberry_stage2",
+       "fertilizer": "minecraft:block/farmland_moist"
+   }
 }

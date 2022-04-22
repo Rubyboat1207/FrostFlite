@@ -131,6 +131,7 @@ public class Main implements ModInitializer {
         ModelPredicateProviderRegistry.register(BAMBOO_BUNDLE, new Identifier(MOD_ID, "has_items"), (stack, world, entity, seed) -> stack.getOrCreateNbt().getInt(SeedBundle.KEY) > 0 ? 1 : 0);
         ModelPredicateProviderRegistry.register(NETHER_WART_BUNDLE, new Identifier(MOD_ID, "has_items"), (stack, world, entity, seed) -> stack.getOrCreateNbt().getInt(SeedBundle.KEY) > 0 ? 1 : 0);
         ModelPredicateProviderRegistry.register(BROCCOLI_BUNDLE, new Identifier(MOD_ID, "has_items"), (stack, world, entity, seed) -> stack.getOrCreateNbt().getInt(SeedBundle.KEY) > 0 ? 1 : 0);
+        ModelPredicateProviderRegistry.register(WINTERBERRY_BUNDLE, new Identifier(MOD_ID, "has_items"), (stack, world, entity, seed) -> stack.getOrCreateNbt().getInt(SeedBundle.KEY) > 0 ? 1 : 0);
         //Dispenser Behavior
         DispenserBlock.registerBehavior(Items.WOODEN_HOE, new GrowingPlotDispenserBehavior());
         DispenserBlock.registerBehavior(Items.STONE_HOE, new GrowingPlotDispenserBehavior());
