@@ -50,44 +50,44 @@ public class GrowingPlotBlock extends Block {
         {
             if(player.getStackInHand(hand).getItem() == Items.DIRT) {
                 world.setBlockState(pos, state.with(FERTILIZER, FertilizerTypes.DIRT));
-                player.getStackInHand(hand).decrement(1);
+                if(!player.isCreative()) {player.getStackInHand(hand).decrement(1);}
                 return ActionResult.SUCCESS;
             }
             if(player.getStackInHand(hand).getItem() == Items.ICE) {
                 world.setBlockState(pos, state.with(FERTILIZER, FertilizerTypes.COLD));
-                player.getStackInHand(hand).decrement(1);
+                if(!player.isCreative()) {player.getStackInHand(hand).decrement(1);}
                 return ActionResult.SUCCESS;
             }
         }
         else if(plotCanAcceptSeeds(state) )
         {
             if(player.getStackInHand(hand).getItem() == Items.WHEAT_SEEDS) {
-                player.getStackInHand(hand).decrement(1);
+                if(!player.isCreative()) {player.getStackInHand(hand).decrement(1);}
                 world.setBlockState(pos, state.with(CROP, CropTypes.WHEAT_SEEDS));
                 return ActionResult.SUCCESS;
             }
             if(player.getStackInHand(hand).getItem() == Main.BROCCOLI_SEEDS) {
-                player.getStackInHand(hand).decrement(1);
+                if(!player.isCreative()) {player.getStackInHand(hand).decrement(1);}
                 world.setBlockState(pos, state.with(CROP, CropTypes.BROCCOLI));
                 return ActionResult.SUCCESS;
             }
             if(player.getStackInHand(hand).getItem() == Items.BEETROOT_SEEDS) {
-                player.getStackInHand(hand).decrement(1);
+                if(!player.isCreative()) {player.getStackInHand(hand).decrement(1);}
                 world.setBlockState(pos, state.with(CROP, CropTypes.BEETROOT_SEEDS));
                 return ActionResult.SUCCESS;
             }
             if(player.getStackInHand(hand).getItem() == Items.POTATO) {
-                player.getStackInHand(hand).decrement(1);
+                if(!player.isCreative()) {player.getStackInHand(hand).decrement(1);}
                 world.setBlockState(pos, state.with(CROP, CropTypes.POTATO));
                 return ActionResult.SUCCESS;
             }
             if(player.getStackInHand(hand).getItem() == Items.CARROT) {
-                player.getStackInHand(hand).decrement(1);
+                if(!player.isCreative()) {player.getStackInHand(hand).decrement(1);}
                 world.setBlockState(pos, state.with(CROP, CropTypes.CARROT));
                 return ActionResult.SUCCESS;
             }
             if(player.getStackInHand(hand).getItem() == Main.WINTERBERRY) {
-                player.getStackInHand(hand).decrement(1);
+                if(!player.isCreative()) {player.getStackInHand(hand).decrement(1);}
                 world.setBlockState(pos, state.with(CROP, CropTypes.WINTERBERRY));
                 return ActionResult.SUCCESS;
             }
@@ -148,7 +148,7 @@ public class GrowingPlotBlock extends Block {
         CropTypes crop = state.get(CROP);
         FertilizerTypes fertilizer = state.get(FERTILIZER);
         //if the fertilizer matches the crop's best type then return 5 else return 1
-        return fertilizer == crop.bestType ? 5 : 2;
+        return fertilizer == crop.bestType ? 4 : 2;
     }
 
     @Override

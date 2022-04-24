@@ -1,7 +1,7 @@
 {
   "structures": [
     {
-      "structure": "rbmodbattle:labs",
+      "structure": "rbmodbattle:winterberry",
       "weight": 1
     }
   ],
@@ -9,7 +9,7 @@
     "type": "minecraft:random_spread",
     "spacing": 5,
     "separation": 2,
-    "salt": 14543786,
+    "salt": 293481093,
     "locate_offset": [
       0
     ]

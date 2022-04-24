@@ -1,0 +1,13 @@
+{
+  "replace": false,
+  "values": [
+    "rbmodbattle:bamboo_bundle",
+    "rbmodbattle:beetroot_bundle",
+    "rbmodbattle:broccoli_bundle",
+    "rbmodbattle:carrot_bundle",
+    "rbmodbattle:nether_wart_bundle",
+    "rbmodbattle:potato_bundle",
+    "rbmodbattle:wheat_seeds_bundle",
+    "rbmodbattle:winterberry_bundle"
+  ]
+}

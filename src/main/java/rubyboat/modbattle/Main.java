@@ -10,6 +10,7 @@ import net.minecraft.client.item.ModelPredicateProviderRegistry;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.item.*;
+import net.minecraft.scoreboard.ScoreboardCriterion;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.util.Identifier;
@@ -24,10 +25,6 @@ import rubyboat.modbattle.items.FarmingElytra;
 import rubyboat.modbattle.items.FarmingElytraEquipmentProvider;
 import rubyboat.modbattle.items.WinterBerryItem;
 import rubyboat.modbattle.items.seedPackages.SeedBundle;
-import totemapi.rubyboat.TotemItem;
-import totemapi.rubyboat.effects.AOEEffect;
-import totemapi.rubyboat.effects.AndEffect;
-import totemapi.rubyboat.effects.FreezeEffect;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -76,7 +73,6 @@ public class Main implements ModInitializer {
 
     public static final GrowingPlotBlock GROWING_PLOT_BLOCK = new GrowingPlotBlock(FabricBlockSettings.of(Material.WOOD).sounds(BlockSoundGroup.WOOD).nonOpaque().ticksRandomly().strength(3, 1).drops(new Identifier(MOD_ID, "blocks/growing_plot")));
     public static final Item GROWING_PLOT_ITEM = new BlockItem(GROWING_PLOT_BLOCK, new FabricItemSettings().group(Main.RB_MODBATTLE_GROUP).maxCount(64));
-
 
 
     public static Item[] crops = new Item[] {

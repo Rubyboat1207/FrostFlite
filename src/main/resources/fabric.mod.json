@@ -22,11 +22,10 @@
   "depends": {
     "fabricloader": ">=0.13.3",
     "fabric": "*",
-    "minecraft": "1.18.2",
-    "totem_api": "*"
+    "minecraft": "1.18.2"
   },
   "recommends": {
-    "isable_custom_worlds_advice": "2.0"
+    "disable_custom_worlds_advice": "*"
   },
   "accessWidener" : "rbmodbattle.accesswidener"
 }

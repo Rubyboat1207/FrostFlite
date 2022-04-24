@@ -1,0 +1,27 @@
+{
+  "display": {
+    "icon": {
+      "item": "minecraft:stone"
+    },
+    "title": "",
+    "description": "",
+    "hidden": true
+  },
+  "criteria": {
+    "requirement": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "tag": "rbmodbattle:seed_bundle"
+          }
+        ]
+      }
+    }
+  },
+  "rewards": {
+    "recipes": [
+      "rbmodbattle:farming_elytra"
+    ]
+  }
+}
