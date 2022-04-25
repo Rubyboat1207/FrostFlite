@@ -7,13 +7,11 @@ import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.*;
 import net.minecraft.block.dispenser.FallibleItemDispenserBehavior;
 import net.minecraft.client.item.ModelPredicateProviderRegistry;
-import net.minecraft.entity.effect.StatusEffectInstance;
-import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.item.*;
-import net.minecraft.scoreboard.ScoreboardCriterion;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.Rarity;
 import net.minecraft.util.math.BlockPointer;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.registry.Registry;
@@ -23,10 +21,9 @@ import rubyboat.modbattle.customBlocks.GrowingPlotBlock;
 import rubyboat.modbattle.customBlocks.WinterBerryBushBlock;
 import rubyboat.modbattle.items.FarmingElytra;
 import rubyboat.modbattle.items.FarmingElytraEquipmentProvider;
-import rubyboat.modbattle.items.WinterBerryItem;
+import rubyboat.modbattle.items.FrostScythe;
 import rubyboat.modbattle.items.seedPackages.SeedBundle;
 
-import java.util.ArrayList;
 import java.util.Random;
 
 public class Main implements ModInitializer {
@@ -61,6 +58,7 @@ public class Main implements ModInitializer {
     public static final WinterBerryBushBlock WINTERBERRY_BUSH = new WinterBerryBushBlock(FabricBlockSettings.of(Material.PLANT).ticksRandomly().breakInstantly().sounds(BlockSoundGroup.CROP).nonOpaque().collidable(false));
     public static final FoodComponent WINTERBERRY_FOOD = new FoodComponent.Builder().hunger(6).saturationModifier(0.6f).build();
     public static final Item WINTERBERRY = new BlockItem(WINTERBERRY_BUSH, new FabricItemSettings().group(Main.RB_MODBATTLE_GROUP).maxCount(64).food(WINTERBERRY_FOOD));
+    public static final Item FROST_SCYTHE = new FrostScythe(ToolMaterials.DIAMOND, 7, 0.2f, new FabricItemSettings().group(Main.RB_MODBATTLE_GROUP).maxCount(1).maxDamage(1250));
 
     public static final SeedBundle POTATO_BUNDLE = new SeedBundle(new FabricItemSettings().group(Main.RB_MODBATTLE_GROUP).maxCount(1), (BlockItem) Items.POTATO);
     public static final SeedBundle CARROT_BUNDLE = new SeedBundle(new FabricItemSettings().group(Main.RB_MODBATTLE_GROUP).maxCount(1), (BlockItem) Items.CARROT);
@@ -74,6 +72,8 @@ public class Main implements ModInitializer {
     public static final GrowingPlotBlock GROWING_PLOT_BLOCK = new GrowingPlotBlock(FabricBlockSettings.of(Material.WOOD).sounds(BlockSoundGroup.WOOD).nonOpaque().ticksRandomly().strength(3, 1).drops(new Identifier(MOD_ID, "blocks/growing_plot")));
     public static final Item GROWING_PLOT_ITEM = new BlockItem(GROWING_PLOT_BLOCK, new FabricItemSettings().group(Main.RB_MODBATTLE_GROUP).maxCount(64));
 
+    public static final Block FROSTED_BLUE_ICE_BLOCK = new Block(FabricBlockSettings.of(Material.ICE).strength(0.5f, 0.5f).sounds(BlockSoundGroup.GLASS).nonOpaque().collidable(true).slipperiness(0.995f));
+    public static final Item FROSTED_BLUE_ICE = new BlockItem(FROSTED_BLUE_ICE_BLOCK, new FabricItemSettings().group(Main.RB_MODBATTLE_GROUP).maxCount(64).rarity(Rarity.UNCOMMON));
 
     public static Item[] crops = new Item[] {
             Items.WHEAT_SEEDS,
@@ -118,6 +118,11 @@ public class Main implements ModInitializer {
         //Winterberry
         Registry.register(Registry.BLOCK, new Identifier(MOD_ID, "winterberry_bush"), WINTERBERRY_BUSH);
         Registry.register(Registry.ITEM, new Identifier(MOD_ID, "winterberry"), WINTERBERRY);
+        //scythe
+        Registry.register(Registry.ITEM, new Identifier(MOD_ID, "frost_scythe"), FROST_SCYTHE);
+        Registry.register(Registry.BLOCK, new Identifier(MOD_ID, "frosted_blue_ice"), FROSTED_BLUE_ICE_BLOCK);
+        Registry.register(Registry.ITEM, new Identifier(MOD_ID, "frosted_blue_ice"), FROSTED_BLUE_ICE);
+
 
         //Model Predicates
         ModelPredicateProviderRegistry.register(POTATO_BUNDLE, new Identifier(MOD_ID, "has_items"), (stack, world, entity, seed) -> stack.getOrCreateNbt().getInt(SeedBundle.KEY) > 0 ? 1 : 0);

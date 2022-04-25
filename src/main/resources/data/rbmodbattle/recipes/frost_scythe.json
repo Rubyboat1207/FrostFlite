@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " ##",
+    "# D",
+    " / "
+  ],
+  "key": {
+    "#": {
+      "item": "rbmodbattle:frosted_blue_ice"
+    },
+    "D": {
+      "item": "minecraft:diamond_hoe"
+    },
+    "/": {
+      "item": "minecraft:stick"
+    }
+  },
+  "result": {
+    "item": "rbmodbattle:frost_scythe",
+    "count": 1
+  }
+}
