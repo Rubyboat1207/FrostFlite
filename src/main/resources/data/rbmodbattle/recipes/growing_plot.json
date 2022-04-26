@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "___",
+    "O O",
+    "UUU"
+  ],
+  "key": {
+    "_": {
+      "item": "minecraft:oak_slab"
+    },
+    "O": {
+      "item": "minecraft:oak_fence"
+    },
+    "U": {
+      "item": "minecraft:oak_planks"
+    }
+  },
+  "result": {
+    "item": "rbmodbattle:growing_plot",
+    "count": 1
+  }
+}

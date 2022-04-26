@@ -58,7 +58,7 @@ public class Main implements ModInitializer {
     public static final WinterBerryBushBlock WINTERBERRY_BUSH = new WinterBerryBushBlock(FabricBlockSettings.of(Material.PLANT).ticksRandomly().breakInstantly().sounds(BlockSoundGroup.CROP).nonOpaque().collidable(false));
     public static final FoodComponent WINTERBERRY_FOOD = new FoodComponent.Builder().hunger(6).saturationModifier(0.6f).build();
     public static final Item WINTERBERRY = new BlockItem(WINTERBERRY_BUSH, new FabricItemSettings().group(Main.RB_MODBATTLE_GROUP).maxCount(64).food(WINTERBERRY_FOOD));
-    public static final Item FROST_SCYTHE = new FrostScythe(ToolMaterials.DIAMOND, 7, 0.2f, new FabricItemSettings().group(Main.RB_MODBATTLE_GROUP).maxCount(1).maxDamage(1250));
+    public static final Item FROST_SCYTHE = new FrostScythe(ToolMaterials.DIAMOND, 3, -2, new FabricItemSettings().group(Main.RB_MODBATTLE_GROUP).maxCount(1).maxDamage(1250));
 
     public static final SeedBundle POTATO_BUNDLE = new SeedBundle(new FabricItemSettings().group(Main.RB_MODBATTLE_GROUP).maxCount(1), (BlockItem) Items.POTATO);
     public static final SeedBundle CARROT_BUNDLE = new SeedBundle(new FabricItemSettings().group(Main.RB_MODBATTLE_GROUP).maxCount(1), (BlockItem) Items.CARROT);
@@ -72,7 +72,7 @@ public class Main implements ModInitializer {
     public static final GrowingPlotBlock GROWING_PLOT_BLOCK = new GrowingPlotBlock(FabricBlockSettings.of(Material.WOOD).sounds(BlockSoundGroup.WOOD).nonOpaque().ticksRandomly().strength(3, 1).drops(new Identifier(MOD_ID, "blocks/growing_plot")));
     public static final Item GROWING_PLOT_ITEM = new BlockItem(GROWING_PLOT_BLOCK, new FabricItemSettings().group(Main.RB_MODBATTLE_GROUP).maxCount(64));
 
-    public static final Block FROSTED_BLUE_ICE_BLOCK = new Block(FabricBlockSettings.of(Material.ICE).strength(0.5f, 0.5f).sounds(BlockSoundGroup.GLASS).nonOpaque().collidable(true).slipperiness(0.995f));
+    public static final Block FROSTED_BLUE_ICE_BLOCK = new Block(FabricBlockSettings.of(Material.ICE).strength(0.5f, 0.5f).sounds(BlockSoundGroup.GLASS).nonOpaque().collidable(true).slipperiness(0.995f).drops(new Identifier(MOD_ID, "blocks/frosted_blue_ice")));
     public static final Item FROSTED_BLUE_ICE = new BlockItem(FROSTED_BLUE_ICE_BLOCK, new FabricItemSettings().group(Main.RB_MODBATTLE_GROUP).maxCount(64).rarity(Rarity.UNCOMMON));
 
     public static Item[] crops = new Item[] {

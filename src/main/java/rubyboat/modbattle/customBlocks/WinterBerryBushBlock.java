@@ -12,6 +12,7 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import rubyboat.modbattle.Main;
@@ -39,6 +40,8 @@ public class WinterBerryBushBlock extends SweetBerryBushBlock {
 
     @Override
     public void onEntityCollision(BlockState state, World world, BlockPos pos, Entity entity) {
+        entity.slowMovement(state, new Vec3d(0.5f, 0.2, 0.5f));
+        entity.setFrozenTicks(entity.getFrozenTicks() + 2);
     }
 
     @Override

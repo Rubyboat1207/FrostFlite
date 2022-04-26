@@ -89,6 +89,13 @@ public class FarmingElytra extends ElytraItem implements FabricElytraItem {
             }
             //if the block at pos1 is air and the block below is farmland then replace it with the block
             if(world.getBlockState(pos1).getBlock() == Blocks.AIR) {
+                if(block == Blocks.NETHER_WART) {
+                    if(world.getBlockState(new BlockPos(pos1).add(0, -1, 0)).getBlock() == Blocks.SOUL_SAND){
+                        world.setBlockState(pos1, block.getDefaultState());
+                    }
+                    count++;
+                    continue;
+                }
                 if(world.getBlockState(new BlockPos(pos1).add(0, -1, 0)).getBlock() == Blocks.FARMLAND || (block == Blocks.BAMBOO && (world.getBlockState(new BlockPos(pos1).add(0, -1, 0)).getBlock() == Blocks.GRASS_BLOCK || world.getBlockState(new BlockPos(pos1).add(0, -1, 0)).getBlock() == Blocks.DIRT))) {
                     world.setBlockState(pos1, block.getDefaultState());
                     count++;
