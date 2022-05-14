@@ -14,5 +14,6 @@
   "block.rbmodbattle.frosted_blue_ice": "Frosted Blue Ice",
   "block.rbmodbattle.winterberry_bush": "Winterberry",
   "block.rbmodbattle.growing_plot": "Growing Plot",
-  "itemGroup.rbmodbattle.rbmodbattle_group": "FrostFlite Mod"
+  "itemGroup.rbmodbattle.rbmodbattle_group": "FrostFlite Mod",
+  "effect.rbmodbattle.antifreeze": "Antifreeze"
 }

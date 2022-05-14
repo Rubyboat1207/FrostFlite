@@ -7,6 +7,8 @@ import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.*;
 import net.minecraft.block.dispenser.FallibleItemDispenserBehavior;
 import net.minecraft.client.item.ModelPredicateProviderRegistry;
+import net.minecraft.entity.effect.StatusEffect;
+import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.item.*;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.BlockSoundGroup;
@@ -19,6 +21,7 @@ import net.minecraft.world.WorldEvents;
 import rubyboat.modbattle.customBlocks.BroccoliPlantBlock;
 import rubyboat.modbattle.customBlocks.GrowingPlotBlock;
 import rubyboat.modbattle.customBlocks.WinterBerryBushBlock;
+import rubyboat.modbattle.effects.AntiFreezeEffect;
 import rubyboat.modbattle.items.FarmingElytra;
 import rubyboat.modbattle.items.FarmingElytraEquipmentProvider;
 import rubyboat.modbattle.items.FrostScythe;
@@ -47,6 +50,7 @@ public class Main implements ModInitializer {
 
     public static ItemGroup RB_MODBATTLE_GROUP = FabricItemGroupBuilder.build(new Identifier(MOD_ID, "rbmodbattle_group"), () -> new ItemStack(Items.WHEAT_SEEDS));
 
+    public static final StatusEffect ANTIFREEZE = new AntiFreezeEffect();
 
     public static final FarmingElytra FARMING_ELYTRA = new FarmingElytra(new FabricItemSettings().group(Main.RB_MODBATTLE_GROUP).maxCount(1).equipmentSlot(FARMING_ELYTRA_EQUIPMENT_PROVIDER).maxDamage(400));
 
@@ -56,7 +60,7 @@ public class Main implements ModInitializer {
     public static final Item BROCCOLI_SEEDS = new BlockItem(BROCCOLI_PLANT, new FabricItemSettings().group(Main.RB_MODBATTLE_GROUP).maxCount(64));
 
     public static final WinterBerryBushBlock WINTERBERRY_BUSH = new WinterBerryBushBlock(FabricBlockSettings.of(Material.PLANT).ticksRandomly().breakInstantly().sounds(BlockSoundGroup.CROP).nonOpaque().collidable(false));
-    public static final FoodComponent WINTERBERRY_FOOD = new FoodComponent.Builder().hunger(6).saturationModifier(0.6f).build();
+    public static final FoodComponent WINTERBERRY_FOOD = new FoodComponent.Builder().hunger(6).saturationModifier(0.6f).statusEffect(new StatusEffectInstance(ANTIFREEZE, 20*10, 0), 1f).build();
     public static final Item WINTERBERRY = new BlockItem(WINTERBERRY_BUSH, new FabricItemSettings().group(Main.RB_MODBATTLE_GROUP).maxCount(64).food(WINTERBERRY_FOOD));
     public static final Item FROST_SCYTHE = new FrostScythe(ToolMaterials.DIAMOND, 3, -2, new FabricItemSettings().group(Main.RB_MODBATTLE_GROUP).maxCount(1).maxDamage(1250));
 
@@ -74,6 +78,8 @@ public class Main implements ModInitializer {
 
     public static final Block FROSTED_BLUE_ICE_BLOCK = new Block(FabricBlockSettings.of(Material.ICE).strength(0.5f, 0.5f).sounds(BlockSoundGroup.GLASS).nonOpaque().collidable(true).slipperiness(0.995f).drops(new Identifier(MOD_ID, "blocks/frosted_blue_ice")));
     public static final Item FROSTED_BLUE_ICE = new BlockItem(FROSTED_BLUE_ICE_BLOCK, new FabricItemSettings().group(Main.RB_MODBATTLE_GROUP).maxCount(64).rarity(Rarity.UNCOMMON));
+
+
 
     public static Item[] crops = new Item[] {
             Items.WHEAT_SEEDS,
@@ -122,6 +128,7 @@ public class Main implements ModInitializer {
         Registry.register(Registry.ITEM, new Identifier(MOD_ID, "frost_scythe"), FROST_SCYTHE);
         Registry.register(Registry.BLOCK, new Identifier(MOD_ID, "frosted_blue_ice"), FROSTED_BLUE_ICE_BLOCK);
         Registry.register(Registry.ITEM, new Identifier(MOD_ID, "frosted_blue_ice"), FROSTED_BLUE_ICE);
+        Registry.register(Registry.STATUS_EFFECT, new Identifier(MOD_ID, "antifreeze"), ANTIFREEZE);
 
 
         //Model Predicates
