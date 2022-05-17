@@ -8,13 +8,13 @@
   ],
   "key": {
     "_": {
-      "item": "minecraft:oak_slab"
+      "item": "minecraft:acacia_slab"
     },
     "O": {
-      "item": "minecraft:oak_fence"
+      "item": "minecraft:acacia_fence"
     },
     "U": {
-      "item": "minecraft:oak_planks"
+      "item": "minecraft:acacia_planks"
     }
   },
   "result": {
