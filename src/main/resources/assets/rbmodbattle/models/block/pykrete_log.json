@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "rbmodbattle:block/pykrete_log_top",
+    "side": "rbmodbattle:block/pykrete_log"
+  }
+}

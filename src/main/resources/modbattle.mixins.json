@@ -4,7 +4,8 @@
   "package": "rubyboat.modbattle.mixins",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
-    "PlayerEntityRendererMixin"
+    "PlayerEntityRendererMixin",
+    "ProjectileEntityMixin"
   ],
   "client": [
   ],

@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "OFO",
+    "FOF",
+    "OFO"
+  ],
+  "key": {
+    "O": {
+      "item": "minecraft:oak_log"
+    },
+    "F": {
+      "item": "rbmodbattle:frosted_blue_ice"
+    }
+  },
+  "result": {
+    "item": "rbmodbattle:pykrete_log",
+    "count": 4
+  }
+}

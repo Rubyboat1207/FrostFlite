@@ -7,6 +7,7 @@ import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.*;
 import net.minecraft.block.dispenser.FallibleItemDispenserBehavior;
 import net.minecraft.client.item.ModelPredicateProviderRegistry;
+import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.item.*;
@@ -16,11 +17,14 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.Rarity;
 import net.minecraft.util.math.BlockPointer;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.registry.BuiltinRegistries;
 import net.minecraft.util.registry.Registry;
+import net.minecraft.util.registry.RegistryKey;
 import net.minecraft.world.WorldEvents;
-import rubyboat.modbattle.customBlocks.BroccoliPlantBlock;
-import rubyboat.modbattle.customBlocks.GrowingPlotBlock;
-import rubyboat.modbattle.customBlocks.WinterBerryBushBlock;
+import net.minecraft.world.biome.Biome;
+import net.minecraft.world.biome.BiomeKeys;
+import net.minecraft.world.biome.BuiltinBiomes;
+import rubyboat.modbattle.customBlocks.*;
 import rubyboat.modbattle.effects.AntiFreezeEffect;
 import rubyboat.modbattle.items.FarmingElytra;
 import rubyboat.modbattle.items.FarmingElytraEquipmentProvider;
@@ -76,10 +80,12 @@ public class Main implements ModInitializer {
     public static final GrowingPlotBlock GROWING_PLOT_BLOCK = new GrowingPlotBlock(FabricBlockSettings.of(Material.WOOD).sounds(BlockSoundGroup.WOOD).nonOpaque().ticksRandomly().strength(3, 1).drops(new Identifier(MOD_ID, "blocks/growing_plot")));
     public static final Item GROWING_PLOT_ITEM = new BlockItem(GROWING_PLOT_BLOCK, new FabricItemSettings().group(Main.RB_MODBATTLE_GROUP).maxCount(64));
 
-    public static final Block FROSTED_BLUE_ICE_BLOCK = new Block(FabricBlockSettings.of(Material.ICE).strength(0.5f, 0.5f).sounds(BlockSoundGroup.GLASS).nonOpaque().collidable(true).slipperiness(0.995f).drops(new Identifier(MOD_ID, "blocks/frosted_blue_ice")));
+    public static final Block FROSTED_BLUE_ICE_BLOCK = new Block(FabricBlockSettings.of(Material.ICE).strength(5f, 0.5f).sounds(BlockSoundGroup.GLASS).nonOpaque().collidable(true).slipperiness(0.995f).drops(new Identifier(MOD_ID, "blocks/frosted_blue_ice")));
     public static final Item FROSTED_BLUE_ICE = new BlockItem(FROSTED_BLUE_ICE_BLOCK, new FabricItemSettings().group(Main.RB_MODBATTLE_GROUP).maxCount(64).rarity(Rarity.UNCOMMON));
 
-
+    //Pykrete Blocks
+    public static final Block PYKRETE_LOG_BLOCK = new PykreteBlock(FabricBlockSettings.of(Material.ICE).strength(100.0f, 1200.0f).drops(new Identifier(MOD_ID, "blocks/pykrete_log")).sounds(BlockSoundGroup.GLASS).slipperiness(0.85f).ticksRandomly().requiresTool().nonOpaque());
+    public static final Item PYKRETE_LOG = new BlockItem(PYKRETE_LOG_BLOCK, new FabricItemSettings().group(Main.RB_MODBATTLE_GROUP).maxCount(64).rarity(Rarity.COMMON));
 
     public static Item[] crops = new Item[] {
             Items.WHEAT_SEEDS,
@@ -90,6 +96,8 @@ public class Main implements ModInitializer {
             Items.NETHER_WART,
             Main.BROCCOLI_SEEDS
     };
+
+    public static final DamageSource DEFLECTED = new FrostFliteDamageSource("deflected");
 
     /*public void dispenserBehavior(BlockPointer pointer, ItemStack stack) {
         BlockPos blockPos = pointer.getPos().offset(pointer.getBlockState().get(DispenserBlock.FACING));
@@ -129,8 +137,9 @@ public class Main implements ModInitializer {
         Registry.register(Registry.BLOCK, new Identifier(MOD_ID, "frosted_blue_ice"), FROSTED_BLUE_ICE_BLOCK);
         Registry.register(Registry.ITEM, new Identifier(MOD_ID, "frosted_blue_ice"), FROSTED_BLUE_ICE);
         Registry.register(Registry.STATUS_EFFECT, new Identifier(MOD_ID, "antifreeze"), ANTIFREEZE);
-
-
+        //pykrete
+        Registry.register(Registry.BLOCK, new Identifier(MOD_ID, "pykrete_log"), PYKRETE_LOG_BLOCK);
+        Registry.register(Registry.ITEM, new Identifier(MOD_ID, "pykrete_log"), PYKRETE_LOG);
         //Model Predicates
         ModelPredicateProviderRegistry.register(POTATO_BUNDLE, new Identifier(MOD_ID, "has_items"), (stack, world, entity, seed) -> stack.getOrCreateNbt().getInt(SeedBundle.KEY) > 0 ? 1 : 0);
         ModelPredicateProviderRegistry.register(CARROT_BUNDLE, new Identifier(MOD_ID, "has_items"), (stack, world, entity, seed) -> stack.getOrCreateNbt().getInt(SeedBundle.KEY) > 0 ? 1 : 0);
