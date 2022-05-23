@@ -17,5 +17,6 @@
   "block.rbmodbattle.pykrete_log": "Pykrete Log",
   "itemGroup.rbmodbattle.rbmodbattle_group": "FrostFlite Mod",
   "effect.rbmodbattle.antifreeze": "Antifreeze",
-  "death.attack.deflected": "%1$s's arrow ricocheted"
+  "death.attack.deflected": "%1$s's arrow ricocheted",
+  "death.attack.deflected.player": "%2$s caused %1$s's arrow to ricochet"
 }
