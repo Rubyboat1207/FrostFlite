@@ -27,7 +27,7 @@ public abstract class ProjectileEntityMixin {
 
     @Inject(at = @At("HEAD"), method = "onBlockHit", cancellable = true)
     private void onBlockHit(BlockHitResult blockHitResult, CallbackInfo ci) {
-        if(((ProjectileEntity)(Object)this).getWorld().getBlockState(blockHitResult.getBlockPos()).getBlock() instanceof PykreteBlock) {
+        if(((ProjectileEntity)(Object)this).getWorld().getBlockState(blockHitResult.getBlockPos()).getBlock() instanceof PykreteBlock || ((ProjectileEntity)(Object)this).getWorld().getBlockState(blockHitResult.getBlockPos()).getBlock() == Main.HARDENED_PYKRETE_LOG_BLOCK) {
             /*
             Quaternion q = blockHitResult.getSide().getRotationQuaternion();
             var yaw = Math.atan2(2.0*(q.getY()*q.getZ() + q.getW()*q.getX()), q.getW()*q.getW() - q.getX()*q.getX() - q.getY()*q.getY() + q.getZ()*q.getZ());
