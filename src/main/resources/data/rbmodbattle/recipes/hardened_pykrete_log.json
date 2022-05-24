@@ -7,14 +7,14 @@
   ],
   "key": {
     "O": {
-      "item": "minecraft:oak_log"
+      "item": "rbmodbattle:pykrete_log"
     },
     "F": {
       "item": "rbmodbattle:frosted_blue_ice"
     }
   },
   "result": {
-    "item": "rbmodbattle:pykrete_log",
+    "item": "rbmodbattle:hardened_pykrete_log",
     "count": 5
   }
 }

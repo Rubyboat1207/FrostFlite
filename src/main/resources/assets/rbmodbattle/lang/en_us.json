@@ -15,6 +15,7 @@
   "block.rbmodbattle.winterberry_bush": "Winterberry",
   "block.rbmodbattle.growing_plot": "Growing Plot",
   "block.rbmodbattle.pykrete_log": "Pykrete Log",
+  "block.rbmodbattle.hardened_pykrete_log": "Hardened Pykrete Log",
   "itemGroup.rbmodbattle.rbmodbattle_group": "FrostFlite Mod",
   "effect.rbmodbattle.antifreeze": "Antifreeze",
   "death.attack.deflected": "%1$s's arrow ricocheted",

@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "axis=x": {
+      "model": "rbmodbattle:block/hardened_pykrete_log",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y": {
+      "model": "rbmodbattle:block/hardened_pykrete_log"
+    },
+    "axis=z": {
+      "model": "rbmodbattle:block/hardened_pykrete_log",
+      "x": 90
+    }
+  }
+}

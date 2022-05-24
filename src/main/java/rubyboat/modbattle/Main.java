@@ -84,8 +84,11 @@ public class Main implements ModInitializer {
     public static final Item FROSTED_BLUE_ICE = new BlockItem(FROSTED_BLUE_ICE_BLOCK, new FabricItemSettings().group(Main.RB_MODBATTLE_GROUP).maxCount(64).rarity(Rarity.UNCOMMON));
 
     //Pykrete Blocks
-    public static final Block PYKRETE_LOG_BLOCK = new PykreteBlock(FabricBlockSettings.of(Material.ICE).strength(100.0f, 1200.0f).drops(new Identifier(MOD_ID, "blocks/pykrete_log")).sounds(BlockSoundGroup.GLASS).slipperiness(0.85f).ticksRandomly().requiresTool().nonOpaque());
+    public static final Block PYKRETE_LOG_BLOCK = new PykreteBlock(FabricBlockSettings.of(Material.ICE).strength(800.0f, 1200.0f).drops(new Identifier(MOD_ID, "blocks/pykrete_log")).sounds(BlockSoundGroup.GLASS).slipperiness(0.85f).ticksRandomly().requiresTool().nonOpaque());
     public static final Item PYKRETE_LOG = new BlockItem(PYKRETE_LOG_BLOCK, new FabricItemSettings().group(Main.RB_MODBATTLE_GROUP).maxCount(64).rarity(Rarity.COMMON));
+
+    public static final Block HARDENED_PYKRETE_LOG_BLOCK = new PykreteBlock(FabricBlockSettings.of(Material.ICE).strength(800.0f, 1200.0f).drops(new Identifier(MOD_ID, "blocks/pykrete_log")).sounds(BlockSoundGroup.GLASS).slipperiness(0.85f).requiresTool().nonOpaque());
+    public static final Item HARDENED_PYKRETE_LOG = new BlockItem(HARDENED_PYKRETE_LOG_BLOCK, new FabricItemSettings().group(Main.RB_MODBATTLE_GROUP).maxCount(64).rarity(Rarity.COMMON));
 
     public static Item[] crops = new Item[] {
             Items.WHEAT_SEEDS,
@@ -140,6 +143,9 @@ public class Main implements ModInitializer {
         //pykrete
         Registry.register(Registry.BLOCK, new Identifier(MOD_ID, "pykrete_log"), PYKRETE_LOG_BLOCK);
         Registry.register(Registry.ITEM, new Identifier(MOD_ID, "pykrete_log"), PYKRETE_LOG);
+
+        Registry.register(Registry.BLOCK, new Identifier(MOD_ID, "hardened_pykrete_log"), HARDENED_PYKRETE_LOG_BLOCK);
+        Registry.register(Registry.ITEM, new Identifier(MOD_ID, "hardened_pykrete_log"), HARDENED_PYKRETE_LOG);
         //Model Predicates
         ModelPredicateProviderRegistry.register(POTATO_BUNDLE, new Identifier(MOD_ID, "has_items"), (stack, world, entity, seed) -> stack.getOrCreateNbt().getInt(SeedBundle.KEY) > 0 ? 1 : 0);
         ModelPredicateProviderRegistry.register(CARROT_BUNDLE, new Identifier(MOD_ID, "has_items"), (stack, world, entity, seed) -> stack.getOrCreateNbt().getInt(SeedBundle.KEY) > 0 ? 1 : 0);

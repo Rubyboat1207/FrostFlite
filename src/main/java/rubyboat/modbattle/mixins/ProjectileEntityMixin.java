@@ -28,11 +28,14 @@ public abstract class ProjectileEntityMixin {
     @Inject(at = @At("HEAD"), method = "onBlockHit", cancellable = true)
     private void onBlockHit(BlockHitResult blockHitResult, CallbackInfo ci) {
         if(((ProjectileEntity)(Object)this).getWorld().getBlockState(blockHitResult.getBlockPos()).getBlock() instanceof PykreteBlock) {
-            /*Quaternion q = blockHitResult.getSide().getRotationQuaternion();
+            /*
+            Quaternion q = blockHitResult.getSide().getRotationQuaternion();
             var yaw = Math.atan2(2.0*(q.getY()*q.getZ() + q.getW()*q.getX()), q.getW()*q.getW() - q.getX()*q.getX() - q.getY()*q.getY() + q.getZ()*q.getZ());
             var pitch = Math.atan(-2.0*(q.getX()*q.getZ() - q.getW()*q.getY()));
             var roll = Math.atan2(2.0*(q.getX()*q.getY() + q.getW()*q.getZ()), q.getW()*q.getW() + q.getX()*q.getX() - q.getY()*q.getY() - q.getZ()*q.getZ());
-            setVelocity(yaw, pitch, roll, ((ProjectileEntity)(Object)this).speed, 0);*/
+            setVelocity(yaw, pitch, roll, ((ProjectileEntity)(Object)this).speed, 0);
+            */
+
             if(owner != null) {
                 owner.damage(Main.DEFLECTED, 10);
                 if(owner.isPlayer()) {
