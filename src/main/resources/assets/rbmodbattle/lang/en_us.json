@@ -18,6 +18,8 @@
   "block.rbmodbattle.hardened_pykrete_log": "Hardened Pykrete Log",
   "itemGroup.rbmodbattle.rbmodbattle_group": "FrostFlite Mod",
   "effect.rbmodbattle.antifreeze": "Antifreeze",
-  "death.attack.deflected": "%1$s's arrow ricocheted",
-  "death.attack.deflected.player": "%2$s caused %1$s's arrow to ricochet"
+  "death.attack.deflected": "%1$s's projectile ricocheted.",
+  "death.attack.deflected.player": "%2$s caused %1$s's projectile to ricochet.",
+  "death.attack.electrocuted": "%1$s thought stingrays were food.",
+  "death.attack.electrocuted.player": "%1$s was force fed stingray by %2$s."
 }

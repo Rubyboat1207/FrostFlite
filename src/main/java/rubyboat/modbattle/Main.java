@@ -10,6 +10,7 @@ import net.minecraft.client.item.ModelPredicateProviderRegistry;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectInstance;
+import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.item.*;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.BlockSoundGroup;
@@ -29,6 +30,7 @@ import rubyboat.modbattle.effects.AntiFreezeEffect;
 import rubyboat.modbattle.items.FarmingElytra;
 import rubyboat.modbattle.items.FarmingElytraEquipmentProvider;
 import rubyboat.modbattle.items.FrostScythe;
+import rubyboat.modbattle.items.WinterSkateItem;
 import rubyboat.modbattle.items.seedPackages.SeedBundle;
 
 import java.util.Random;
@@ -84,11 +86,14 @@ public class Main implements ModInitializer {
     public static final Item FROSTED_BLUE_ICE = new BlockItem(FROSTED_BLUE_ICE_BLOCK, new FabricItemSettings().group(Main.RB_MODBATTLE_GROUP).maxCount(64).rarity(Rarity.UNCOMMON));
 
     //Pykrete Blocks
-    public static final Block PYKRETE_LOG_BLOCK = new PykreteBlock(FabricBlockSettings.of(Material.ICE).strength(800.0f, 1200.0f).drops(new Identifier(MOD_ID, "blocks/pykrete_log")).sounds(BlockSoundGroup.GLASS).slipperiness(0.85f).ticksRandomly().requiresTool().nonOpaque());
+    public static final Block PYKRETE_LOG_BLOCK = new PykreteBlock(FabricBlockSettings.of(Material.ICE).strength(600.0f, 1200.0f).drops(new Identifier(MOD_ID, "blocks/pykrete_log")).sounds(BlockSoundGroup.GLASS).slipperiness(0.85f).ticksRandomly().requiresTool().nonOpaque());
     public static final Item PYKRETE_LOG = new BlockItem(PYKRETE_LOG_BLOCK, new FabricItemSettings().group(Main.RB_MODBATTLE_GROUP).maxCount(64).rarity(Rarity.COMMON));
 
-    public static final Block HARDENED_PYKRETE_LOG_BLOCK = new PykreteBlock(FabricBlockSettings.of(Material.ICE).strength(800.0f, 1200.0f).drops(new Identifier(MOD_ID, "blocks/pykrete_log")).sounds(BlockSoundGroup.GLASS).slipperiness(0.85f).requiresTool().nonOpaque());
+    public static final Block HARDENED_PYKRETE_LOG_BLOCK = new Block(FabricBlockSettings.of(Material.ICE).strength(600.0f, 1200.0f).drops(new Identifier(MOD_ID, "blocks/pykrete_log")).sounds(BlockSoundGroup.GLASS).slipperiness(0.85f).requiresTool().nonOpaque());
     public static final Item HARDENED_PYKRETE_LOG = new BlockItem(HARDENED_PYKRETE_LOG_BLOCK, new FabricItemSettings().group(Main.RB_MODBATTLE_GROUP).maxCount(64).rarity(Rarity.COMMON));
+
+    public static final FoodComponent WINTER_SKATE_FOOD = new FoodComponent.Builder().hunger(2).saturationModifier(0.2f).build();
+    public static final Item WINTER_SKATE = new WinterSkateItem(new FabricItemSettings().group(Main.RB_MODBATTLE_GROUP).food(WINTER_SKATE_FOOD).maxCount(1));
 
     public static Item[] crops = new Item[] {
             Items.WHEAT_SEEDS,
@@ -101,17 +106,7 @@ public class Main implements ModInitializer {
     };
 
     public static final DamageSource DEFLECTED = new FrostFliteDamageSource("deflected");
-
-    /*public void dispenserBehavior(BlockPointer pointer, ItemStack stack) {
-        BlockPos blockPos = pointer.getPos().offset(pointer.getBlockState().get(DispenserBlock.FACING));
-        ServerWorld world = pointer.getWorld();
-        BlockState blockState = world.getBlockState(blockPos);
-        if(blockState.isOf(Main.GROWING_PLOT_BLOCK) && blockState.get(GrowingPlotBlock.AGE) >= blockState.get(GrowingPlotBlock.CROP).maxAge){
-            GrowingPlotBlock plot = (GrowingPlotBlock) (blockState).getBlock();
-            plot.DropSeeds(blockState, world, blockPos);
-        }
-    }
-    */
+    public static final DamageSource ELECTROCUTED = new FrostFliteDamageSource("electrocuted");
 
     @Override
     public void onInitialize() {
@@ -143,9 +138,11 @@ public class Main implements ModInitializer {
         //pykrete
         Registry.register(Registry.BLOCK, new Identifier(MOD_ID, "pykrete_log"), PYKRETE_LOG_BLOCK);
         Registry.register(Registry.ITEM, new Identifier(MOD_ID, "pykrete_log"), PYKRETE_LOG);
-
         Registry.register(Registry.BLOCK, new Identifier(MOD_ID, "hardened_pykrete_log"), HARDENED_PYKRETE_LOG_BLOCK);
         Registry.register(Registry.ITEM, new Identifier(MOD_ID, "hardened_pykrete_log"), HARDENED_PYKRETE_LOG);
+        //Winter Skate
+        Registry.register(Registry.ITEM, new Identifier(MOD_ID, "winter_skate"), WINTER_SKATE);
+
         //Model Predicates
         ModelPredicateProviderRegistry.register(POTATO_BUNDLE, new Identifier(MOD_ID, "has_items"), (stack, world, entity, seed) -> stack.getOrCreateNbt().getInt(SeedBundle.KEY) > 0 ? 1 : 0);
         ModelPredicateProviderRegistry.register(CARROT_BUNDLE, new Identifier(MOD_ID, "has_items"), (stack, world, entity, seed) -> stack.getOrCreateNbt().getInt(SeedBundle.KEY) > 0 ? 1 : 0);
