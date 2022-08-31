@@ -4,8 +4,12 @@ import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.client.itemgroup.FabricItemGroupBuilder;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
+import net.fabricmc.fabric.api.object.builder.v1.block.entity.FabricBlockEntityTypeBuilder;
+import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.block.*;
 import net.minecraft.block.dispenser.FallibleItemDispenserBehavior;
+import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.client.item.ModelPredicateProviderRegistry;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.effect.StatusEffect;
@@ -30,7 +34,6 @@ import rubyboat.modbattle.effects.AntiFreezeEffect;
 import rubyboat.modbattle.items.FarmingElytra;
 import rubyboat.modbattle.items.FarmingElytraEquipmentProvider;
 import rubyboat.modbattle.items.FrostScythe;
-import rubyboat.modbattle.items.WinterSkateItem;
 import rubyboat.modbattle.items.seedPackages.SeedBundle;
 
 import java.util.Random;
@@ -89,11 +92,10 @@ public class Main implements ModInitializer {
     public static final Block PYKRETE_LOG_BLOCK = new PykreteBlock(FabricBlockSettings.of(Material.ICE).strength(600.0f, 1200.0f).drops(new Identifier(MOD_ID, "blocks/pykrete_log")).sounds(BlockSoundGroup.GLASS).slipperiness(0.85f).ticksRandomly().requiresTool().nonOpaque());
     public static final Item PYKRETE_LOG = new BlockItem(PYKRETE_LOG_BLOCK, new FabricItemSettings().group(Main.RB_MODBATTLE_GROUP).maxCount(64).rarity(Rarity.COMMON));
 
-    public static final Block HARDENED_PYKRETE_LOG_BLOCK = new Block(FabricBlockSettings.of(Material.ICE).strength(600.0f, 1200.0f).drops(new Identifier(MOD_ID, "blocks/pykrete_log")).sounds(BlockSoundGroup.GLASS).slipperiness(0.85f).requiresTool().nonOpaque());
+    public static final Block HARDENED_PYKRETE_LOG_BLOCK = new PillarBlock(FabricBlockSettings.of(Material.ICE).strength(600.0f, 1200.0f).drops(new Identifier(MOD_ID, "blocks/pykrete_log")).sounds(BlockSoundGroup.GLASS).slipperiness(0.85f).requiresTool().nonOpaque());
     public static final Item HARDENED_PYKRETE_LOG = new BlockItem(HARDENED_PYKRETE_LOG_BLOCK, new FabricItemSettings().group(Main.RB_MODBATTLE_GROUP).maxCount(64).rarity(Rarity.COMMON));
 
     public static final FoodComponent WINTER_SKATE_FOOD = new FoodComponent.Builder().hunger(2).saturationModifier(0.2f).build();
-    public static final Item WINTER_SKATE = new WinterSkateItem(new FabricItemSettings().group(Main.RB_MODBATTLE_GROUP).food(WINTER_SKATE_FOOD).maxCount(1));
 
     public static Item[] crops = new Item[] {
             Items.WHEAT_SEEDS,
@@ -140,18 +142,6 @@ public class Main implements ModInitializer {
         Registry.register(Registry.ITEM, new Identifier(MOD_ID, "pykrete_log"), PYKRETE_LOG);
         Registry.register(Registry.BLOCK, new Identifier(MOD_ID, "hardened_pykrete_log"), HARDENED_PYKRETE_LOG_BLOCK);
         Registry.register(Registry.ITEM, new Identifier(MOD_ID, "hardened_pykrete_log"), HARDENED_PYKRETE_LOG);
-        //Winter Skate
-        Registry.register(Registry.ITEM, new Identifier(MOD_ID, "winter_skate"), WINTER_SKATE);
-
-        //Model Predicates
-        ModelPredicateProviderRegistry.register(POTATO_BUNDLE, new Identifier(MOD_ID, "has_items"), (stack, world, entity, seed) -> stack.getOrCreateNbt().getInt(SeedBundle.KEY) > 0 ? 1 : 0);
-        ModelPredicateProviderRegistry.register(CARROT_BUNDLE, new Identifier(MOD_ID, "has_items"), (stack, world, entity, seed) -> stack.getOrCreateNbt().getInt(SeedBundle.KEY) > 0 ? 1 : 0);
-        ModelPredicateProviderRegistry.register(WHEAT_SEEDS_BUNDLE, new Identifier(MOD_ID, "has_items"), (stack, world, entity, seed) -> stack.getOrCreateNbt().getInt(SeedBundle.KEY) > 0 ? 1 : 0);
-        ModelPredicateProviderRegistry.register(BEETROOT_BUNDLE, new Identifier(MOD_ID, "has_items"), (stack, world, entity, seed) -> stack.getOrCreateNbt().getInt(SeedBundle.KEY) > 0 ? 1 : 0);
-        ModelPredicateProviderRegistry.register(BAMBOO_BUNDLE, new Identifier(MOD_ID, "has_items"), (stack, world, entity, seed) -> stack.getOrCreateNbt().getInt(SeedBundle.KEY) > 0 ? 1 : 0);
-        ModelPredicateProviderRegistry.register(NETHER_WART_BUNDLE, new Identifier(MOD_ID, "has_items"), (stack, world, entity, seed) -> stack.getOrCreateNbt().getInt(SeedBundle.KEY) > 0 ? 1 : 0);
-        ModelPredicateProviderRegistry.register(BROCCOLI_BUNDLE, new Identifier(MOD_ID, "has_items"), (stack, world, entity, seed) -> stack.getOrCreateNbt().getInt(SeedBundle.KEY) > 0 ? 1 : 0);
-        ModelPredicateProviderRegistry.register(WINTERBERRY_BUNDLE, new Identifier(MOD_ID, "has_items"), (stack, world, entity, seed) -> stack.getOrCreateNbt().getInt(SeedBundle.KEY) > 0 ? 1 : 0);
         //Dispenser Behavior
         DispenserBlock.registerBehavior(Items.WOODEN_HOE, new GrowingPlotDispenserBehavior());
         DispenserBlock.registerBehavior(Items.STONE_HOE, new GrowingPlotDispenserBehavior());
